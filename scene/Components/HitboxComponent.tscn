@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://521wgt360aga"]
+
+[sub_resource type="GDScript" id="GDScript_al5uy"]
+script/source = "extends Area2D
+
+@export var health_component: HealthComponent
+
+func damage(attack_damage, knockback):
+	if health_component:
+		health_component.damage(attack_damage, knockback)
+"
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p7eje"]
+
+[node name="HitboxComponent" type="Area2D"]
+script = SubResource("GDScript_al5uy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_p7eje")

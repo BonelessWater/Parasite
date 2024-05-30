@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://b1vxq3cvn6rbv"]
+
+[ext_resource type="Script" path="res://script/Bullet.gd" id="1_j5dye"]
+[ext_resource type="Texture2D" uid="uid://b5wabm37nanp4" path="res://assets/weapons/All_Fire_Bullet_Pixel_16x16.png" id="2_d81h5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ei8hb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q75y5"]
+atlas = ExtResource("2_d81h5")
+region = Rect2(384, 48, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l4rys"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q75y5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rjwjb"]
+
+[node name="Bullet" type="CharacterBody2D"]
+script = ExtResource("1_j5dye")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ei8hb")
+disabled = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-1, -1)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_l4rys")
+autoplay = "default"
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_rjwjb")
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

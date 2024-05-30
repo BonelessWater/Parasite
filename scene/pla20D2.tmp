@@ -1,0 +1,76 @@
+[gd_scene load_steps=11 format=3 uid="uid://cbh1eqr6auhv"]
+
+[ext_resource type="Texture2D" uid="uid://r503g8pql1sg" path="res://assets/player.png" id="1_ichrt"]
+[ext_resource type="Script" path="res://script/player.gd" id="1_ygar8"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rypiv"]
+radius = 19.0
+height = 52.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nnr0c"]
+atlas = ExtResource("1_ichrt")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rl4dd"]
+atlas = ExtResource("1_ichrt")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v2ois"]
+atlas = ExtResource("1_ichrt")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ore1"]
+atlas = ExtResource("1_ichrt")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6o14o"]
+atlas = ExtResource("1_ichrt")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wb2ad"]
+atlas = ExtResource("1_ichrt")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m5gm3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nnr0c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rl4dd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v2ois")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ore1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6o14o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wb2ad")
+}],
+"loop": true,
+"name": &"forward",
+"speed": 5.0
+}]
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_ygar8")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_rypiv")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+process_priority = 2
+texture_filter = 1
+position = Vector2(0, -18)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_m5gm3")
+animation = &"forward"
+autoplay = "forward"
