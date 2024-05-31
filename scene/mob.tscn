@@ -1,7 +1,7 @@
 [gd_scene load_steps=17 format=3 uid="uid://cto7cgpyhq87d"]
 
 [ext_resource type="Script" path="res://script/Mob.gd" id="1_t1lth"]
-[ext_resource type="Texture2D" uid="uid://5d52m56d54hn" path="res://assets/sprite.png" id="2_avf4e"]
+[ext_resource type="Texture2D" uid="uid://5d52m56d54hn" path="res://assets/Models/sprite.png" id="2_dh1e4"]
 [ext_resource type="PackedScene" uid="uid://cof0ofcondwxv" path="res://scene/Components/HealthComponent.tscn" id="3_p5521"]
 [ext_resource type="PackedScene" uid="uid://521wgt360aga" path="res://scene/Components/HitboxComponent.tscn" id="4_baf0y"]
 
@@ -10,39 +10,39 @@ radius = 8.0
 height = 24.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5cyb8"]
-atlas = ExtResource("2_avf4e")
+atlas = ExtResource("2_dh1e4")
 region = Rect2(0, 0, 16, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yvhro"]
-atlas = ExtResource("2_avf4e")
+atlas = ExtResource("2_dh1e4")
 region = Rect2(0, 24, 16, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v63se"]
-atlas = ExtResource("2_avf4e")
+atlas = ExtResource("2_dh1e4")
 region = Rect2(16, 24, 16, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jtqix"]
-atlas = ExtResource("2_avf4e")
+atlas = ExtResource("2_dh1e4")
 region = Rect2(32, 24, 16, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g7qke"]
-atlas = ExtResource("2_avf4e")
+atlas = ExtResource("2_dh1e4")
 region = Rect2(48, 24, 16, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u7qwg"]
-atlas = ExtResource("2_avf4e")
+atlas = ExtResource("2_dh1e4")
 region = Rect2(0, 48, 16, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_unfue"]
-atlas = ExtResource("2_avf4e")
+atlas = ExtResource("2_dh1e4")
 region = Rect2(16, 48, 16, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nrpdo"]
-atlas = ExtResource("2_avf4e")
+atlas = ExtResource("2_dh1e4")
 region = Rect2(32, 48, 16, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i7put"]
-atlas = ExtResource("2_avf4e")
+atlas = ExtResource("2_dh1e4")
 region = Rect2(48, 48, 16, 24)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_p84v7"]
@@ -81,7 +81,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vkbnp"]
-radius = 387.373
+radius = 523.061
 
 [node name="Mob" type="CharacterBody2D"]
 script = ExtResource("1_t1lth")

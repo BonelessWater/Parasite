@@ -20,7 +20,7 @@ var bullet_spawn_from_player := 25
 @export var spread_angle := PI/4
 @export var bullets_spread := 3
 
-var weapon_type = 'Weapon'
+var weapon_type = 'Pistol'
 
 var timer
 var attacking = false

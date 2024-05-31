@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://io122u5fyvm3"
-path="res://.godot/imported/CONCHARS.png-dd41ca541e855f050357686cd95c94c5.ctex"
+uid="uid://r503g8pql1sg"
+path="res://.godot/imported/player.png-cf5beeeb583c5b3905f914f56f13fb01.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/CONCHARS.png"
-dest_files=["res://.godot/imported/CONCHARS.png-dd41ca541e855f050357686cd95c94c5.ctex"]
+source_file="res://assets/Models/player.png"
+dest_files=["res://.godot/imported/player.png-cf5beeeb583c5b3905f914f56f13fb01.ctex"]
 
 [params]
 

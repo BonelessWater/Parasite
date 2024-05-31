@@ -1,33 +1,42 @@
 extends CharacterBody2D
 
-var begin_process = false
+var begin_process := false
 var ani
 var taking_damage := false
 
 @export var SPEED := 30.0
 @export var MAX_HEALTH := 100.0
 @export var STAMINA := 5 # Seconds
-@export var RUN_MULTIPLIER := 1.25
+@export var RUN_MULTIPLIER := 1.5
 
-var run_multiplier = 1
-var health = MAX_HEALTH
+var run_multiplier := 1.0
+var health := MAX_HEALTH
 var curr_direction := 'forward'
-var distance_to_next_level = 0
+var distance_to_next_level := 0
 
 # Weapon inventory
-var weapons = {'rifle': true, 'shotgun': false, 'pistol': false}
-var rifle
-var shotgut
-var pistol
+const weaponShowPath = preload('res://scene/WeaponDrops/WeaponShow.tscn')
+var weaponShow
+var weaponSprite
+var weaponInHand := false
+var weapons := {'Pistol': false, 'Shotgun': false, 'Rifle': false}
+var Pistol
+var Shotgut
+var Rifle
 
 # Ability inventory
-var abilities = {'dash': true}
-var dash
+var abilities = {'Dash': false}
+var Dash
+
+var aim
+var game_node
+
 
 func _ready():
 	ani = $AnimatedSprite2D
-	dash = get_parent().get_parent().get_node('Abilities/Dash')
-	rifle = get_parent().get_parent().get_node('Objects/Weapon')
+	weaponShow = weaponShowPath.instantiate()
+	Dash = get_parent().get_parent().get_node('Abilities/Dash')
+	Pistol = get_parent().get_parent().get_node('Objects/Pistol')
 
 func damage(attack_damage, _knockback):
 	health -= attack_damage
@@ -36,17 +45,39 @@ func damage(attack_damage, _knockback):
 	
 	taking_damage = true
 
+func rotateWeapon(node):
+	aim = (get_global_mouse_position() - node.position).normalized()
+	
+	#if aim.x > 0:
+	node.rotation = atan2(aim.y, aim.x)
+	#else:
+	#	node.rotation = atan2(aim.y, aim.x) + PI
+
 func input(delta):
+	# Check what weapon is in player's hand
+	for weapon in weapons:
+		if weapons[weapon] == true:
+			if weapon == 'Pistol' and weaponInHand == false:
+				add_child(weaponShow)
+				weaponSprite = get_node('WeaponShow/Sprite2D')
+				# This code takes a specific pistol from a large image of weapons
+				weaponSprite.texture = ResourceLoader.load('res://assets/weapons/1.png')
+				weaponSprite.region_enabled = true
+				weaponSprite.region_rect = Rect2(0, 118, 12, 10)
+				weaponInHand = true
+				
 	# Run if user has dash in inventory
 	if Input.is_action_pressed('space'):
 		# Check if user collected dash
-		if abilities['dash'] == true:
+		if abilities['Dash'] == true:
 			get_parent().get_parent().get_node('Abilities/Dash').use(delta)
 	
 	if Input.is_action_pressed('attack'):
-		# Check is user collected rifle
-		if weapons['rifle'] == true:
-			rifle.use(delta)
+		# Check is user collected pistol
+		if weapons['Pistol'] == true:
+			Pistol.use(delta)
+		# Add more weapons
+		rotateWeapon(get_node('WeaponShow'))
 	
 	#distance_to_next_level = get_parent().get_node('GameLogic').distance_to_next_level
 	#get_node('Expbar').set_value(distance_to_next_level)
