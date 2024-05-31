@@ -1,9 +1,8 @@
-[gd_scene load_steps=46 format=3 uid="uid://cbh1eqr6auhv"]
+[gd_scene load_steps=45 format=3 uid="uid://cbh1eqr6auhv"]
 
 [ext_resource type="Texture2D" uid="uid://r503g8pql1sg" path="res://assets/player.png" id="1_ichrt"]
 [ext_resource type="Script" path="res://script/player.gd" id="1_ygar8"]
 [ext_resource type="PackedScene" uid="uid://cof0ofcondwxv" path="res://scene/Components/HealthComponent.tscn" id="3_txtxw"]
-[ext_resource type="PackedScene" uid="uid://521wgt360aga" path="res://scene/Components/HitboxComponent.tscn" id="4_2wkgu"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rypiv"]
 radius = 19.0
@@ -323,6 +322,7 @@ animations = [{
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(250, 150)
 script = ExtResource("1_ygar8")
+SPEED = 40000.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
@@ -341,5 +341,3 @@ autoplay = "forward"
 frame_progress = 0.615584
 
 [node name="HealthComponent" parent="." instance=ExtResource("3_txtxw")]
-
-[node name="HitboxComponent" parent="." instance=ExtResource("4_2wkgu")]

@@ -2,21 +2,25 @@ extends CharacterBody2D
 
 var begin_process = false
 var ani
+var taking_damage := false
 
-const SPEED = 30000.0
-var curr_direction = 'forward'
-var start_health = float(100)
-var health = start_health
+@export var SPEED := 30.0
+@export var MAX_HEALTH := 100.0
+@export var STAMINA := 5 # Seconds
+@export var RUN_MULTIPLIER := 1.25
+
+var run_multiplier = 1
+var health = MAX_HEALTH
+var curr_direction := 'forward'
 var distance_to_next_level = 0
 
-# Weapon in inventory
+# Weapon inventory
 var weapons = {'rifle': true, 'shotgun': false, 'pistol': false}
-var curr_weapon = null
-const bulletPath = preload('res://scene/bullet.tscn')
-var shoot_cooldown = 0.1
 var rifle
+var shotgut
+var pistol
 
-# Abilities
+# Ability inventory
 var abilities = {'dash': true}
 var dash
 
@@ -25,40 +29,41 @@ func _ready():
 	dash = get_parent().get_parent().get_node('Abilities/Dash')
 	rifle = get_parent().get_parent().get_node('Objects/Weapon')
 
+func damage(attack_damage, _knockback):
+	health -= attack_damage
+	if health <= 0:
+		queue_free()
+	
+	taking_damage = true
+
 func input(delta):
 	# Run if user has dash in inventory
 	if Input.is_action_pressed('space'):
 		# Check if user collected dash
 		if abilities['dash'] == true:
-			dash.use(delta)
+			get_parent().get_parent().get_node('Abilities/Dash').use(delta)
 	
 	if Input.is_action_pressed('attack'):
 		# Check is user collected rifle
 		if weapons['rifle'] == true:
 			rifle.use(delta)
 	
-	
-	#if take_damage != 0 and health > 0:
-	#	health -= take_damage
-	#	get_node('Healthbar').scale.x -= take_damage/start_health
-	#	take_damage = 0
-	
-	
-	#if health <= 0:
-	#	get_node('Healthbar').scale.x = 0
-	#	ani.play('death')
-	
 	#distance_to_next_level = get_parent().get_node('GameLogic').distance_to_next_level
 	#get_node('Expbar').set_value(distance_to_next_level)
-	
-	#$Weapon.look_at(get_global_mouse_position())
-	
+
 func movement(delta):
 	var directionx = Input.get_axis("move_left", "move_right")
 	var directiony = Input.get_axis("move_up", "move_down")
+	if Input.is_action_pressed('shift') and STAMINA > 0:
+		run_multiplier = RUN_MULTIPLIER
+	elif STAMINA < 5:
+		STAMINA += delta # smart use of delta :)
+	else:
+		run_multiplier = 1
+		
 	if directionx or directiony:
-		velocity.x = directionx * SPEED * delta
-		velocity.y = directiony * SPEED * delta
+		velocity.x = directionx * SPEED * delta * run_multiplier
+		velocity.y = directiony * SPEED * delta * run_multiplier
 		
 		# Look direction 
 		if velocity.x > 0:
@@ -77,8 +82,8 @@ func movement(delta):
 			ani.play('forward_walk')
 			
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED * delta)
-		velocity.y = move_toward(velocity.y, 0, SPEED * delta)
+		velocity.x = move_toward(velocity.x, 0, SPEED * delta * run_multiplier)
+		velocity.y = move_toward(velocity.y, 0, SPEED * delta * run_multiplier)
 		
 		# Look direction 
 		if velocity.x > 0:
@@ -97,5 +102,7 @@ func movement(delta):
 			ani.play('forward')
 			
 	move_and_slide()
-	
-	
+
+# Identifier function, do not remove
+func player():
+	pass

@@ -16,7 +16,7 @@ func startup():
 	player.set_position(player_pos)
 	
 	# Add mobs and other items here
-
+	
 func _process(delta):
 	if begin_process:
 		player.movement(delta)

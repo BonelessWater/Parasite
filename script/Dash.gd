@@ -1,16 +1,17 @@
 extends Node2D
 
-const timerPath = preload("res://scene/timer.tscn")
 
-var dash_distance := 10000.0
-var dash_speed
+@export var dash_distance := 10000.0
+@export var dash_cooldown := 1
+@export var dash_speed := 10.0
+
 var dash_on := false
-var dash_cooldown := 1
 var timer
 var player
+var cursor_direction
 
 func _ready():
-	timer = timerPath.instantiate()
+	timer = get_node('Timer')
 	timer.set_wait_time(dash_cooldown)
 
 func use(delta):
@@ -24,10 +25,9 @@ func use(delta):
 		player = game_node.get_node('Level2/Player')
 	elif game_node.level_status == 'Level3':
 		player = game_node.get_node('Level3/Player')
-		
-	if dash_on == true and timer.time_left() == 0:
-		var cursor_direction = (get_viewport().get_mouse_position() - player.position).normalized()
+	print(timer.time_left)
+	if timer.time_left <= 0.05:
+		cursor_direction = (get_viewport().get_mouse_position() - player.position).normalized()
 		player.position += cursor_direction * dash_distance * delta
 		timer.start()
-	dash_on = false
 

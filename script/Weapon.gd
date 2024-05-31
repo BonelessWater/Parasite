@@ -6,19 +6,21 @@ var game_node
 var level
 
 var aim: Vector2
-var bullet_spawn_from_player := 50
+var bullet_spawn_from_player := 25
 
-var attack_damage := 10.0
-var attack_speed := 0.1
-var attack_range := 10.0
-var projectile_speed := 100.0
-var knockback := 10.0
+@export var attack_damage := 10.0
+@export var attack_speed := 0.1
+@export var attack_range := 10.0
+@export var projectile_speed := 500.0
+@export var knockback := 10.0
 
 # Shotgun/special weapon
-var spread := 10.0
-var spread_range := 10.0
-var spread_angle := PI/4
-var bullets_spread := 3
+@export var spread := 10.0
+@export var spread_range := 10.0
+@export var spread_angle := PI/4
+@export var bullets_spread := 3
+
+var weapon_type = 'Weapon'
 
 var timer
 var attacking = false
@@ -51,6 +53,9 @@ func use(_delta):
 		bullet.spread_range = spread_range
 		bullet.spread_angle = spread_angle
 		bullet.bullets_spread = bullets_spread
+		
+		# Define weapon type as attrobute of the bullet or fuck you. Spell it correctly
+		bullet.weapon_type = weapon_type
 		
 		game_node.get_node(level).add_child(bullet)
 		aim = (get_global_mouse_position() - game_node.get_node(level + '/Player').position)
