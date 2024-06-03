@@ -1,16 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://y5m717rfnc30"]
+[gd_scene load_steps=6 format=3 uid="uid://y5m717rfnc30"]
 
 [ext_resource type="Script" path="res://script/game.gd" id="1_gdixo"]
 [ext_resource type="PackedScene" uid="uid://dfr36sejdm04d" path="res://scene/Levels/tutorial.tscn" id="2_x3ken"]
 [ext_resource type="Script" path="res://script/Logic.gd" id="3_plwna"]
-[ext_resource type="PackedScene" uid="uid://cto7cgpyhq87d" path="res://mob.tscn" id="3_tqex2"]
-[ext_resource type="Script" path="res://script/Weapon.gd" id="4_8cd2e"]
-[ext_resource type="Script" path="res://script/Dash.gd" id="5_3gdox"]
+[ext_resource type="Script" path="res://script/weapons/Pistol.gd" id="4_8cd2e"]
+[ext_resource type="Script" path="res://script/abilities/Dash.gd" id="5_3gdox"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_gdixo")
 
 [node name="Tutorial" parent="." instance=ExtResource("2_x3ken")]
+position = Vector2(4, -10)
 
 [node name="Level1" type="Node2D" parent="."]
 
@@ -21,24 +21,23 @@ script = ExtResource("1_gdixo")
 [node name="Logic" type="Node2D" parent="."]
 script = ExtResource("3_plwna")
 
-[node name="Mobs" type="Node2D" parent="."]
-
-[node name="Mob" parent="Mobs" instance=ExtResource("3_tqex2")]
-position = Vector2(-57, -31)
-
 [node name="Objects" type="Node2D" parent="."]
 
-[node name="Weapon" type="Node2D" parent="Objects"]
+[node name="Pistol" type="Node2D" parent="Objects"]
 script = ExtResource("4_8cd2e")
+attack_speed = 0.4
 
-[node name="Marker2D" type="Marker2D" parent="Objects/Weapon"]
+[node name="Marker2D" type="Marker2D" parent="Objects/Pistol"]
 position = Vector2(30, 0)
 
-[node name="Sprite2D" type="Sprite2D" parent="Objects/Weapon"]
+[node name="Sprite2D" type="Sprite2D" parent="Objects/Pistol"]
 
-[node name="Timer" type="Timer" parent="Objects/Weapon"]
+[node name="Timer" type="Timer" parent="Objects/Pistol"]
 
 [node name="Abilities" type="Node2D" parent="."]
 
 [node name="Dash" type="Node2D" parent="Abilities"]
 script = ExtResource("5_3gdox")
+
+[node name="Timer" type="Timer" parent="Abilities/Dash"]
+one_shot = true

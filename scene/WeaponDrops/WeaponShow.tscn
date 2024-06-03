@@ -8,4 +8,3 @@
 texture_filter = 1
 texture = ExtResource("1_pffhn")
 region_enabled = true
-region_rect = Rect2(-0.450729, 115.313, 13.3122, 13.7559)

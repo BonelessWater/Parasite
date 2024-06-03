@@ -3,11 +3,34 @@
 [sub_resource type="GDScript" id="GDScript_al5uy"]
 script/source = "extends Area2D
 
-@export var health_component: HealthComponent
+var attack_damage
+var knockback
+var attack_speed
+var in_hitbox := false
+var timer
+var player
 
-func damage(attack_damage, knockback):
-	if health_component:
-		health_component.damage(attack_damage, knockback)
+func _ready():
+	attack_damage = 10
+	attack_speed = 1.0
+	timer = get_node('AttackTimer')
+	timer.set_wait_time(attack_speed)
+
+func _process(_delta):
+	if in_hitbox and timer.time_left == 0:
+		player.get_node('HealthComponent').damage(attack_damage, knockback)
+		timer.start()
+
+func _on_body_entered(body):
+	if body.has_method('player'): # This if statement goes first to prevent errors when hitting walls
+		if body.get_node('HealthComponent').has_method('damage'): 
+			in_hitbox = true
+			player = body # this is weird but confia
+	
+func _on_body_exited(body):
+	if body.has_method('player'): # This if statement goes first to prevent errors when hitting walls
+		if body.get_node('HealthComponent').has_method('damage'): 
+			in_hitbox = false
 "
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p7eje"]
@@ -17,3 +40,9 @@ script = SubResource("GDScript_al5uy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_p7eje")
+
+[node name="AttackTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
