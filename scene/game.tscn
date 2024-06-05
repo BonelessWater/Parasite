@@ -17,6 +17,16 @@ position = Vector2(4, -10)
 [node name="Door" type="Node2D" parent="Tutorial"]
 position = Vector2(-4, 10)
 
+[node name="Key2" type="Node2D" parent="Tutorial/Door"]
+
+[node name="key" parent="Tutorial/Door/Key2" instance=ExtResource("5_mwx1c")]
+position = Vector2(100, 72)
+
+[node name="Key" type="Node2D" parent="Tutorial/Door"]
+
+[node name="key" parent="Tutorial/Door/Key" instance=ExtResource("5_mwx1c")]
+position = Vector2(531, 167)
+
 [node name="Door" parent="Tutorial/Door" instance=ExtResource("5_44vux")]
 position = Vector2(304, 14)
 
@@ -42,20 +52,14 @@ position = Vector2(30, 0)
 
 [node name="Timer" type="Timer" parent="Objects/Pistol"]
 
-[node name="Key" type="Node2D" parent="Objects"]
-
-[node name="key" parent="Objects/Key" instance=ExtResource("5_mwx1c")]
-position = Vector2(531, 167)
-
-[node name="Key2" type="Node2D" parent="Objects"]
-
-[node name="key" parent="Objects/Key2" instance=ExtResource("5_mwx1c")]
-position = Vector2(100, 72)
-
 [node name="Abilities" type="Node2D" parent="."]
 
 [node name="Dash" type="Node2D" parent="Abilities"]
 script = ExtResource("5_3gdox")
 
-[node name="Timer" type="Timer" parent="Abilities/Dash"]
+[node name="Cooldown" type="Timer" parent="Abilities/Dash"]
+one_shot = true
+
+[node name="On" type="Timer" parent="Abilities/Dash"]
+wait_time = 0.1
 one_shot = true

@@ -287,7 +287,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
 "
 
@@ -310,7 +310,7 @@ scale = Vector2(12, 8.233)
 texture = ExtResource("3_cgdmh")
 
 [node name="Dash" parent="." instance=ExtResource("3_u1ihy")]
-position = Vector2(1391, 142)
+position = Vector2(400, 284)
 
 [node name="Pistol" parent="." instance=ExtResource("5_fwm6c")]
 position = Vector2(657, 176)
@@ -365,39 +365,31 @@ text = "Dash away if they get to your head."
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_lfhgy")
-autoplay = true
 script = SubResource("GDScript_kdnel")
 
 [node name="Mob" parent="." instance=ExtResource("3_wro1i")]
-visible = false
 position = Vector2(3271, 296)
 
 [node name="Mob2" parent="." instance=ExtResource("3_wro1i")]
-visible = false
-position = Vector2(1435, 248)
+position = Vector2(1966, 276)
 
 [node name="Mob3" parent="." instance=ExtResource("3_wro1i")]
-visible = false
 position = Vector2(2532, 274)
 
 [node name="Mob4" parent="." instance=ExtResource("3_wro1i")]
-visible = false
 position = Vector2(3447, 174)
 speed = 10001
 
 [node name="Mob5" parent="." instance=ExtResource("3_wro1i")]
-visible = false
 position = Vector2(4685, 298)
 MAX_HEALTH = 200.0
 
 [node name="Mob6" parent="." instance=ExtResource("3_wro1i")]
-visible = false
 position = Vector2(4617, 156)
 MAX_HEALTH = 200.0
 speed = 10010
 
 [node name="Mob7" parent="." instance=ExtResource("3_wro1i")]
-visible = false
 position = Vector2(4576, 317)
 MAX_HEALTH = 200.0
 speed = 15000

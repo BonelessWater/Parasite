@@ -78,7 +78,7 @@ func input(delta):
 		if weapons['Pistol'] == true:
 			Pistol.use(delta)
 		# Add more weapons
-		rotateWeapon(get_node('WeaponShow'))
+			rotateWeapon(get_node('WeaponShow'))
 	
 	#distance_to_next_level = get_parent().get_node('GameLogic').distance_to_next_level
 	#get_node('Expbar').set_value(distance_to_next_level)
@@ -134,7 +134,7 @@ func movement(delta):
 			ani.play('forward')
 			
 	move_and_slide()
-	
+
 # Identifier function, do not remove
 func player():
 	pass
