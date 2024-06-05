@@ -9,6 +9,7 @@ var taking_damage := false
 @export var STAMINA := 5 # Seconds
 @export var RUN_MULTIPLIER := 1.5
 
+var keyObtained = false
 var run_multiplier := 1.0
 var health := MAX_HEALTH
 var curr_direction := 'forward'
@@ -133,7 +134,7 @@ func movement(delta):
 			ani.play('forward')
 			
 	move_and_slide()
-
+	
 # Identifier function, do not remove
 func player():
 	pass
