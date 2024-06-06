@@ -9,14 +9,14 @@ var taking_damage := false
 @export var STAMINA := 5 # Seconds
 @export var RUN_MULTIPLIER := 1.5
 
-var keyObtained = false
+var keyObtained := false
 var run_multiplier := 1.0
 var health := MAX_HEALTH
 var curr_direction := 'forward'
 var distance_to_next_level := 0
 
 # Weapon inventory
-const weaponShowPath = preload('res://scene/WeaponDrops/WeaponShow.tscn')
+const weaponShowPath := preload('res://scene/WeaponDrops/WeaponShow.tscn')
 var weaponShow
 var weaponSprite
 var weaponInHand := false
@@ -26,7 +26,7 @@ var Shotgut
 var Rifle
 
 # Ability inventory
-var abilities = {'Dash': false}
+var abilities := {'Dash': false}
 var Dash
 
 var aim

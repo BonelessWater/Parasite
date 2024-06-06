@@ -21,4 +21,7 @@ func _on_hitbox_body_entered(body):
 		if body.get_node('HealthComponent').has_method('damage'):
 			body.get_node('HealthComponent').damage(attack_damage, knockback)
 			queue_free()
+	if body.has_method('wall'):
+		queue_free()
+	if body.has_method('door'):
 		queue_free()

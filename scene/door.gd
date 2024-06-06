@@ -7,10 +7,12 @@ func _on_area_2d_body_entered(body):
 			body.keyObtained = false
 			$AnimatedSprite2D.play("opening")
 			open = true
-			print(get_node("hitbox").is_disabled() )
-			get_node("hitbox").disabled = true 
-			print(get_node("hitbox").is_disabled() )
+			get_node("hitbox").set_disabled(true)
+			print(get_node("hitbox").is_disabled())
 
 func _on_area_2d_body_exited(_body):
 	$AnimatedSprite2D.play("opened")
 
+# Identifier method
+func door():
+	pass
