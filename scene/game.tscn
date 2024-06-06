@@ -10,7 +10,7 @@
 script = ExtResource("1_gdixo")
 
 [node name="Tutorial" parent="." instance=ExtResource("2_x3ken")]
-position = Vector2(-1, 1)
+position = Vector2(-5, 0)
 
 [node name="Level1" type="Node2D" parent="."]
 

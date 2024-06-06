@@ -20,7 +20,7 @@ func _ready():
 	dash_on.set_wait_time(dash_duration)
 	
 # Dash is more like a very quick and large speed boost, We can add invincibility frames from as well.
-func use(delta):
+func use(_delta):
 	# Find the location of the player node according to the game information
 	var game_node = get_parent().get_parent()
 	if game_node.level_status == 'Tutorial':
