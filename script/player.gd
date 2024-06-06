@@ -4,7 +4,9 @@ var begin_process := false
 var ani
 var taking_damage := false
 
-@export var SPEED := 30.0
+@export var movement_speed := 9000.0
+@export var DASH_SPEED := 4.0
+@export var DASH_LENGTH := 0.1
 @export var MAX_HEALTH := 100.0
 @export var STAMINA := 5 # Seconds
 @export var RUN_MULTIPLIER := 1.5
@@ -28,6 +30,7 @@ var Rifle
 # Ability inventory
 var abilities := {'Dash': false}
 var Dash
+var dashlength
 
 var aim
 var game_node
@@ -46,14 +49,6 @@ func damage(attack_damage, _knockback):
 	
 	taking_damage = true
 
-func rotateWeapon(node):
-	aim = (get_global_mouse_position() - node.position).normalized()
-	
-	#if aim.x > 0:
-	node.rotation = atan2(aim.y, aim.x)
-	#else:
-	#	node.rotation = atan2(aim.y, aim.x) + PI
-
 func input(delta):
 	# Check what weapon is in player's hand
 	for weapon in weapons:
@@ -68,22 +63,25 @@ func input(delta):
 				weaponInHand = true
 				
 	# Run if user has dash in inventory
-	if Input.is_action_pressed('space'):
-		# Check if user collected dash
-		if abilities['Dash'] == true:
-			get_parent().get_parent().get_node('Abilities/Dash').use(delta)
+	
 	
 	if Input.is_action_pressed('attack'):
 		# Check is user collected pistol
 		if weapons['Pistol'] == true:
 			Pistol.use(delta)
 		# Add more weapons
-			rotateWeapon(get_node('WeaponShow'))
 	
 	#distance_to_next_level = get_parent().get_node('GameLogic').distance_to_next_level
 	#get_node('Expbar').set_value(distance_to_next_level)
 
 func movement(delta):
+	if Input.is_action_pressed('space'):
+		# Check if user collected dash
+		if abilities['Dash'] == true:
+			DASH_SPEED = 4
+	else: 
+		DASH_SPEED = 1
+		
 	var directionx = Input.get_axis("move_left", "move_right")
 	var directiony = Input.get_axis("move_up", "move_down")
 	if Input.is_action_pressed('shift') and STAMINA > 0:
@@ -94,8 +92,8 @@ func movement(delta):
 		run_multiplier = 1
 		
 	if directionx or directiony:
-		velocity.x = directionx * SPEED * delta * run_multiplier
-		velocity.y = directiony * SPEED * delta * run_multiplier
+		velocity.x = directionx * movement_speed * delta * run_multiplier * DASH_SPEED
+		velocity.y = directiony * movement_speed * delta * run_multiplier * DASH_SPEED
 		
 		# Look direction 
 		if velocity.x > 0:
@@ -114,8 +112,8 @@ func movement(delta):
 			ani.play('forward_walk')
 			
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED * delta * run_multiplier)
-		velocity.y = move_toward(velocity.y, 0, SPEED * delta * run_multiplier)
+		velocity.x = move_toward(velocity.x, 0, movement_speed * delta * run_multiplier * DASH_SPEED)
+		velocity.y = move_toward(velocity.y, 0, movement_speed * delta * run_multiplier * DASH_SPEED)
 		
 		# Look direction 
 		if velocity.x > 0:

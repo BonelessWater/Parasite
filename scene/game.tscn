@@ -41,7 +41,3 @@ script = ExtResource("5_3gdox")
 
 [node name="Cooldown" type="Timer" parent="Abilities/Dash"]
 one_shot = true
-
-[node name="On" type="Timer" parent="Abilities/Dash"]
-wait_time = 0.1
-one_shot = true

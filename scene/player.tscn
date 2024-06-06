@@ -322,7 +322,6 @@ animations = [{
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(250, 150)
 script = ExtResource("1_ygar8")
-SPEED = 40000.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
