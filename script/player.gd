@@ -4,12 +4,17 @@ var begin_process := false
 var ani
 var taking_damage := false
 
-@export var movement_speed := 9000.0
+@export var movement_speed := 15000.0
 @export var DASH_SPEED := 4.0
 @export var DASH_LENGTH := 0.1
 @export var MAX_HEALTH := 100.0
 @export var STAMINA := 5 # Seconds
 @export var RUN_MULTIPLIER := 1.5
+var cooldown := 1
+var cooldown_timer
+var dash_length
+var dash_timer
+var is_dashing := false
 
 var keyObtained := false
 var run_multiplier := 1.0
@@ -41,6 +46,12 @@ func _ready():
 	weaponShow = weaponShowPath.instantiate()
 	Dash = get_parent().get_parent().get_node('Abilities/Dash')
 	Pistol = get_parent().get_parent().get_node('Objects/Pistol')
+	
+	cooldown_timer = get_node('cooldown')
+	cooldown_timer.set_wait_time(cooldown)
+	
+	dash_length = get_node('dash_length')
+	dash_length.set_wait_time(DASH_LENGTH)
 
 func damage(attack_damage, _knockback):
 	health -= attack_damage
@@ -77,10 +88,19 @@ func input(delta):
 func movement(delta):
 	if Input.is_action_pressed('space'):
 		# Check if user collected dash
-		if abilities['Dash'] == true:
-			DASH_SPEED = 4
-	else: 
+		if abilities['Dash'] == true and cooldown_timer.time_left == 0:
+			is_dashing = true
+			cooldown_timer.start()
+			
+	if is_dashing == true: 
+		dash_length.start()
+		is_dashing = false
+		
+	if dash_length.time_left >= 0.05:
+		DASH_SPEED = 10
+	else:
 		DASH_SPEED = 1
+
 		
 	var directionx = Input.get_axis("move_left", "move_right")
 	var directiony = Input.get_axis("move_up", "move_down")
