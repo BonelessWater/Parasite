@@ -369,6 +369,7 @@ text = "Dash away if they get to your head."
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_lfhgy")
+autoplay = true
 script = SubResource("GDScript_kdnel")
 
 [node name="Mob" parent="." instance=ExtResource("3_wro1i")]
