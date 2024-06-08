@@ -7,8 +7,9 @@ var spread
 var spread_range
 var spread_angle
 var bullets_spread
-var knockback
+var knockback := 1000000
 var weapon_type
+var bullet_dir
 
 func _ready():
 	attack_damage = get_parent().get_parent().get_node('Objects/' + weapon_type).attack_damage
@@ -19,7 +20,8 @@ func _physics_process(delta):
 func _on_hitbox_body_entered(body):
 	if body.has_method('mob'):
 		if body.get_node('HealthComponent').has_method('damage'):
-			body.get_node('HealthComponent').damage(attack_damage, knockback)
+			bullet_dir = velocity.normalized()
+			body.get_node('HealthComponent').damage(attack_damage, knockback, bullet_dir)
 			queue_free()
 	if body.has_method('wall'):
 		queue_free()

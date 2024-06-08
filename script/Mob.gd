@@ -7,15 +7,19 @@ extends CharacterBody2D
 var health
 var taking_damage := false
 var follow
-var dir_to_player
+var wanted_velocity
+var velocity_delta
 	
 func _ready():
 	health = MAX_HEALTH
 	
 func _physics_process(delta):
+	follow = false
 	if follow:
-		dir_to_player = (get_parent().get_node('Player').position - position).normalized()
-		velocity = dir_to_player * speed * delta
+		wanted_velocity = (get_parent().get_node('Player').position - position).normalized() * speed * delta
+		velocity_delta = velocity - wanted_velocity
+
+		velocity -= velocity_delta * 0.1 # make this number larger to make the mob always follow the straighest path to the player 
 		
 		if velocity.x < 0:
 			$AnimatedSprite2D.flip_h = true
@@ -25,13 +29,11 @@ func _physics_process(delta):
 		move_and_slide()
 
 func _on_view_range_body_entered(body):
-	print('enter')
 	# Only the player has a method called player
 	if body.has_method('player'):
 		follow = true
 
 func _on_view_range_body_exited(body):
-	print('exit')
 	# Only the player has a method called player
 	if body.has_method('player'):
 		follow = false

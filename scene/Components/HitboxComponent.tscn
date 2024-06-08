@@ -4,7 +4,8 @@
 script/source = "extends Area2D
 
 var attack_damage
-var knockback
+var knockback := 50
+var knockback_dir
 var attack_speed
 var in_hitbox := false
 var timer
@@ -18,7 +19,8 @@ func _ready():
 
 func _process(_delta):
 	if in_hitbox and timer.time_left == 0:
-		player.get_node('HealthComponent').damage(attack_damage, knockback)
+		knockback_dir = player.position - get_parent().position
+		player.get_node('HealthComponent').damage(attack_damage, knockback, knockback_dir)
 		timer.start()
 
 func _on_body_entered(body):

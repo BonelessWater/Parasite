@@ -111,10 +111,18 @@ func movement(delta):
 	else:
 		run_multiplier = 1
 		
-	if directionx or directiony:
-		velocity.x = directionx * movement_speed * delta * run_multiplier * DASH_SPEED
-		velocity.y = directiony * movement_speed * delta * run_multiplier * DASH_SPEED
-		
+	# Direction player wants to go
+	var wanted_velocity = Vector2(directionx, directiony)  * movement_speed * delta * run_multiplier * DASH_SPEED
+	var velocity_delta = velocity - wanted_velocity
+	
+	velocity -= velocity_delta * 0.1 # increase the coefficient to make the movement feel more instant
+
+	if abs(velocity.x) <= 0.1:
+		velocity.x = 0 
+	if abs(velocity.y) <= 0.1:
+		velocity.y = 0 
+			
+	if velocity:
 		# Look direction 
 		if velocity.x > 0:
 			curr_direction = 'right'
