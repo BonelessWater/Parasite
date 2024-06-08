@@ -1,17 +1,27 @@
 extends CharacterBody2D
 
-@export var MAX_HEALTH := 20.0
-@export var speed := 1000
-@export var attack_damage := 10.0
-@export var attack_speed := 1.0
 var health
+var max_health
+var speed
+var attack_damage
+var attack_speed
+
 var taking_damage := false
 var follow
 var wanted_velocity
 var velocity_delta
 	
+var game_node
+
 func _ready():
-	health = MAX_HEALTH
+	game_node = get_parent().get_parent()
+	
+	health = game_node.mob1_max_health
+	max_health = game_node.mob1_max_health
+	
+	speed = game_node.mob1_speed
+	attack_damage = game_node.mob1_attack_damage
+	attack_speed = game_node.mob1_attack_damage
 	
 func _physics_process(delta):
 	if follow:

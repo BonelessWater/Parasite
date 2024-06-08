@@ -2,7 +2,8 @@ extends Node2D
 
 # Just change these varaibles when making a new drop
 var ability_name := 'Dash'
-const image := preload('res://assets/items/crystal_01.png')
+@export var image_name := 'crystal_01.png'
+var image := load('res://assets/items/'+image_name)
 
 var sprite
 

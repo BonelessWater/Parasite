@@ -24,7 +24,7 @@ func _ready():
 	dash_duration.set_wait_time(dash_length)
 	dash_duration.set_one_shot(true)
 
-func _process(delta):
+func _process(_delta):
 	is_dashing = game_node.is_dashing
 	#print(dash_duration.time_left)
 	if is_dashing == true: 

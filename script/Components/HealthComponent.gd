@@ -1,17 +1,17 @@
 extends Node2D
 class_name HealthComponent
 
-var MAX_HEALTH: float
+var max_health: float
 var health: float
 
 func _ready():
-	MAX_HEALTH = get_parent().MAX_HEALTH
-	health = MAX_HEALTH
+	max_health = get_parent().max_health
+	health = max_health
 	
 func damage(attack_damage, knockback=0, knockback_dir=Vector2(0,0)):
 	health -= attack_damage
 	
-	get_node('HealthBar').scale.x -= attack_damage/MAX_HEALTH
+	get_node('HealthBar').scale.x -= attack_damage/max_health
 		
 	if health <= 0:
 		get_parent().queue_free()

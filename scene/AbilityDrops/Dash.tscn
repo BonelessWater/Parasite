@@ -1,13 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://bfwllfb0u0ios"]
 
-[ext_resource type="Script" path="res://scene/AbilityDrops/Dash.gd" id="1_ca8e0"]
+[ext_resource type="Script" path="res://scene/AbilityDrops/Drop.gd" id="1_wodr0"]
 [ext_resource type="Texture2D" uid="uid://c12v6uanci7yu" path="res://assets/items/crystal_01.png" id="2_sw7ed"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vpman"]
 radius = 17.0
 
 [node name="Dash" type="Node2D"]
-script = ExtResource("1_ca8e0")
+script = ExtResource("1_wodr0")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1

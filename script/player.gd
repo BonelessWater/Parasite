@@ -1,20 +1,21 @@
 extends CharacterBody2D
 
 var begin_process := false
+
 var ani
 var taking_damage := false
 
-@export var movement_speed := 15000.0
-@export var dash_speed := 4.0
-@export var dash_length := 0.1
-@export var MAX_HEALTH := 100.0
-@export var STAMINA := 5 # Seconds
-@export var RUN_MULTIPLIER := 1.5
-
 var keyObtained := false
-var run_multiplier := 1.0
-var health := MAX_HEALTH
+var sprint := 1.0
+
+var health
+var max_health
+var dash_speed
+var movement_speed
+var max_sprint
+var stamina
 var curr_direction := 'forward'
+
 var distance_to_next_level := 0
 
 # Weapon inventory
@@ -22,6 +23,7 @@ const weaponShowPath := preload('res://scene/WeaponDrops/WeaponShow.tscn')
 var weaponShow
 var weaponSprite
 var weaponInHand := false
+
 var weapons := {'Pistol': false, 'Shotgun': false, 'Rifle': false}
 var Pistol
 var Shotgut
@@ -30,7 +32,7 @@ var Rifle
 # Ability inventory
 var abilities := {'Dash': false, 'AOE': false}
 var Dash
-var dashlength
+var AOE
 
 var aim
 var game_node
@@ -39,6 +41,12 @@ var game_node
 func _ready():
 	game_node =  get_parent().get_parent()
 	
+	health = game_node.max_health
+	movement_speed = game_node.movement_speed
+	health = game_node.max_health
+	max_health = game_node.max_health
+	max_sprint = game_node.max_sprint
+	stamina = game_node.stamina
 	
 	ani = $AnimatedSprite2D
 	weaponShow = weaponShowPath.instantiate()
@@ -86,15 +94,15 @@ func movement(delta):
 	
 	var directionx = Input.get_axis("move_left", "move_right")
 	var directiony = Input.get_axis("move_up", "move_down")
-	if Input.is_action_pressed('shift') and STAMINA > 0:
-		run_multiplier = RUN_MULTIPLIER
-	elif STAMINA < 5:
-		STAMINA += delta # smart use of delta :)
+	if Input.is_action_pressed('shift') and stamina > 0:
+		sprint = max_sprint
+	elif stamina < 5:
+		stamina += delta # smart use of delta :)
 	else:
-		run_multiplier = 1
+		sprint = 1
 		
 	# Direction player wants to go
-	var wanted_velocity = Vector2(directionx, directiony)  * movement_speed * delta * run_multiplier * dash_speed
+	var wanted_velocity = Vector2(directionx, directiony)  * movement_speed * delta * sprint * dash_speed
 	var velocity_delta = velocity - wanted_velocity
 	
 	velocity -= velocity_delta * 0.1 # increase the coefficient to make the movement feel more instant
@@ -122,8 +130,8 @@ func movement(delta):
 			ani.play('forward_walk')
 			
 	else:
-		velocity.x = move_toward(velocity.x, 0, movement_speed * delta * run_multiplier * dash_speed)
-		velocity.y = move_toward(velocity.y, 0, movement_speed * delta * run_multiplier * dash_speed)
+		velocity.x = move_toward(velocity.x, 0, movement_speed * delta * sprint * dash_speed)
+		velocity.y = move_toward(velocity.y, 0, movement_speed * delta * sprint * dash_speed)
 		
 		# Look direction 
 		if velocity.x > 0:
