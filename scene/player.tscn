@@ -340,9 +340,3 @@ autoplay = "forward"
 frame_progress = 0.615584
 
 [node name="HealthComponent" parent="." instance=ExtResource("3_txtxw")]
-
-[node name="cooldown" type="Timer" parent="."]
-one_shot = true
-
-[node name="dash_length" type="Timer" parent="."]
-one_shot = true

@@ -21,7 +21,6 @@ func _on_area_2d_body_entered(body):
 			open = true
 		if open:
 			body.position += tp
-			print(tp)
 			
 # Identifier method
 func door():

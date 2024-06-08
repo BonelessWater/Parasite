@@ -1,5 +1,15 @@
 extends Node2D
 
+# BALANCING VARIABLES
+
+# abilities
+var is_dashing := false
+@export var max_dash_speed := 30.0
+@export var dash_length := 0.15
+@export var dash_cooldown := 1
+
+var dash_speed := 1
+
 var tutorial
 var level1
 var level2

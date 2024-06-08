@@ -14,7 +14,6 @@ func _ready():
 	health = MAX_HEALTH
 	
 func _physics_process(delta):
-	follow = false
 	if follow:
 		wanted_velocity = (get_parent().get_node('Player').position - position).normalized() * speed * delta
 		velocity_delta = velocity - wanted_velocity
