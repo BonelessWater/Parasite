@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://db6d61i8omd24"]
 
-[ext_resource type="Script" path="res://script/door.gd" id="1_4wktd"]
+[ext_resource type="Script" path="res://script/door.gd" id="1_axs7x"]
 [ext_resource type="Texture2D" uid="uid://btj53k18p4gp4" path="res://assets/items/Doors-and-Portals-Pixel-Art-Asset-Pack2-720x480.png" id="1_hl4yr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ek86v"]
@@ -84,7 +84,7 @@ size = Vector2(41, 67)
 size = Vector2(75, 93)
 
 [node name="Door" type="CharacterBody2D"]
-script = ExtResource("1_4wktd")
+script = ExtResource("1_axs7x")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1

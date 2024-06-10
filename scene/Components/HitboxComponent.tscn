@@ -4,14 +4,21 @@
 script/source = "extends Area2D
 
 var attack_damage
-var knockback := 50
+var knockback
 var knockback_dir
 var attack_speed
 var in_hitbox := false
 var timer
 var player
 
+var game_node
+
 func _ready():
+	game_node = get_parent().get_parent()
+	
+	if get_parent().has_method('mob'):
+		knockback = game_node.get_parent().mob1_knockback
+	
 	attack_damage = 10
 	attack_speed = 1.0
 	timer = get_node('AttackTimer')
