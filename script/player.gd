@@ -116,43 +116,41 @@ func movement(delta):
 		velocity.y = 0 
 			
 	if velocity:
-		# Look direction 
-		if velocity.x > 0:
+	# Check for direction inputs and set the current direction
+		if Input.is_action_just_pressed("move_right"):
 			curr_direction = 'right'
 			$AnimatedSprite2D.flip_h = false
-			ani.play('side_walk')
-		elif velocity.x < 0:
+		elif Input.is_action_just_pressed("move_left"):
 			curr_direction = 'left'
 			$AnimatedSprite2D.flip_h = true
-			ani.play('side_walk')
-		elif velocity.y < 0:
+		elif Input.is_action_just_pressed("move_up"):
 			curr_direction = 'back'
-			ani.play('back_walk')
-		else:
+		elif Input.is_action_just_pressed("move_down"):
 			curr_direction = 'forward'
-			ani.play('forward_walk')
-			
+
+	# Play the appropriate walking animation based on the current direction
+		match curr_direction:
+			'right', 'left':
+				ani.play('side_walk')
+			'back':
+				ani.play('back_walk')
+			'forward':
+				ani.play('forward_walk')
 	else:
 		velocity.x = move_toward(velocity.x, 0, movement_speed * delta * sprint * dash_speed)
 		velocity.y = move_toward(velocity.y, 0, movement_speed * delta * sprint * dash_speed)
-		
-		# Look direction 
-		if velocity.x > 0:
-			curr_direction = 'right'
-			$AnimatedSprite2D.flip_h = false
-			ani.play('side')
-		elif velocity.x < 0:
-			curr_direction = 'left'
-			$AnimatedSprite2D.flip_h = true
-			ani.play('side')
-		elif velocity.y < 0:
-			curr_direction = 'back'
-			ani.play('back')
-		else:
-			curr_direction = 'forward'
-			ani.play('forward')
-			
+	
+	# Play the appropriate idle animation based on the current direction
+		match curr_direction:
+			'right', 'left':
+				ani.play('side')
+			'back':
+				ani.play('back')
+			'forward':
+				ani.play('forward')
+
 	move_and_slide()
+
 
 # Identifier function, do not remove
 func player():
