@@ -15,3 +15,4 @@ func _process(delta):
 
 func _on_start_pressed():
 	get_tree().root.add_child(simultaneous_scene)
+	queue_free()

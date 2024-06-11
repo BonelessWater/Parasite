@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=3 uid="uid://t84u8tt4oxer"]
+
+[ext_resource type="Texture2D" uid="uid://cbdio8lvrk75t" path="res://assets/items/heart_01.png" id="1_ykd02"]
+[ext_resource type="Script" path="res://Skill.gd" id="2_4pnl8"]
+
+[node name="Skill" type="TextureButton"]
+offset_right = 40.0
+offset_bottom = 40.0
+toggle_mode = true
+texture_normal = ExtResource("1_ykd02")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("2_4pnl8")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "0/3"
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="Line2D" type="Line2D" parent="."]
+top_level = true
+z_index = -1
+width = 5.0
+default_color = Color(0.219501, 0.219501, 0.219501, 1)
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

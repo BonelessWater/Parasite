@@ -100,6 +100,9 @@ func movement(delta):
 		stamina += delta # smart use of delta :)
 	else:
 		sprint = 1
+	if Input.is_action_just_pressed("skill_tree"):
+		get_tree().change_scene_to_file("res://scene/skill_tree.tscn")
+		
 		
 	# Direction player wants to go
 	var wanted_velocity = Vector2(directionx, directiony)  * movement_speed * delta * sprint * dash_speed
