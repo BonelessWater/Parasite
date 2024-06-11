@@ -41,12 +41,11 @@ var game_node
 func _ready():
 	game_node =  get_parent().get_parent()
 	
-	health = game_node.max_health
-	movement_speed = game_node.movement_speed
-	health = game_node.max_health
-	max_health = game_node.max_health
-	max_sprint = game_node.max_sprint
-	stamina = game_node.stamina
+	health = Global.max_health
+	movement_speed = Global.movement_speed
+	max_health = Global.max_health
+	max_sprint = Global.max_sprint
+	stamina =Global.stamina
 	
 	ani = $AnimatedSprite2D
 	weaponShow = weaponShowPath.instantiate()
