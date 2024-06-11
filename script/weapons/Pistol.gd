@@ -1,11 +1,10 @@
 extends Node2D
 
-# Make an instanse of weapon and remember to set the desired texture path
+# Make an instance of weapon and remember to set the desired texture path
 const bulletPath = preload('res://scene/bullet.tscn')
 var game_node
 var level
 
-var aim: Vector2
 var bullet_spawn_from_player := 25
 
 @export var attack_damage := 10.0
@@ -48,25 +47,35 @@ func use(_delta):
 		bullet.projectile_speed = projectile_speed
 		bullet.knockback = knockback
 		
-		# Spread logic will be dealth with later
+		# Spread logic will be dealt with later
 		bullet.spread = spread
 		bullet.spread_range = spread_range
 		bullet.spread_angle = spread_angle
 		bullet.bullets_spread = bullets_spread
 		
-		# Define weapon type as attrobute of the bullet or fuck you. Spell it correctly
+		# Define weapon type as attribute of the bullet
 		bullet.weapon_type = weapon_type
 		
 		game_node.get_node(level).add_child(bullet)
-		aim = (get_global_mouse_position() - game_node.get_node(level + '/Player').position)
-		aim = aim.normalized()
-		bullet.position = game_node.get_node(level + '/Player').position + aim * bullet_spawn_from_player
 		
+		var player = game_node.get_node(level + '/Player')
+		var aim = Vector2.ZERO
+
+		match player.curr_direction:
+			'right':
+				aim.x = 1
+			'left':
+				aim.x = -1
+			'back':
+				aim.y = -1
+			'forward':
+				aim.y = 1
 		
-		bullet.velocity = get_global_mouse_position() - bullet.position
+		bullet.position = player.position + aim * bullet_spawn_from_player
+		
+		bullet.velocity = aim * projectile_speed
 		
 		if bullet.velocity.x > 0:
-			bullet.rotation = atan(bullet.velocity.y/bullet.velocity.x)
+			bullet.rotation = atan(bullet.velocity.y / bullet.velocity.x)
 		else:
-			bullet.rotation = atan(bullet.velocity.y/bullet.velocity.x) + PI
-		
+			bullet.rotation = atan(bullet.velocity.y / bullet.velocity.x) + PI

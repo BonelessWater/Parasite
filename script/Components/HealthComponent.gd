@@ -21,4 +21,4 @@ func damage(attack_damage, knockback=0, knockback_dir=Vector2(0,0)):
 		get_parent().queue_free()
 		
 	get_parent().velocity += knockback * knockback_dir
-	print('knockback')
+	
