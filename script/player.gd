@@ -14,6 +14,7 @@ var dash_speed
 var movement_speed
 var max_sprint
 var stamina
+var player_radius
 var curr_direction := 'forward'
 
 var distance_to_next_level := 0
@@ -34,13 +35,15 @@ var abilities := {'Dash': false, 'AOE': false, 'Bubble': false}
 var Dash
 var AOE
 var Bubble
-
+var BubbleSprite
 var aim
-var game_node
 
+var game_node
+var hitbox
 
 func _ready():
-	game_node =  get_parent().get_parent()
+	hitbox = get_node('Hitbox')
+	game_node = get_parent().get_parent()
 	
 	health = Global.max_health
 	movement_speed = Global.movement_speed
@@ -49,11 +52,26 @@ func _ready():
 	stamina = Global.stamina
 	
 	ani = $AnimatedSprite2D
+	
 	weaponShow = weaponShowPath.instantiate()
 	Dash = game_node.get_node('Abilities/Dash')
 	Bubble = game_node.get_node('Abilities/Bubble')
+	BubbleSprite = $BubbleSprite
 	Pistol = game_node.get_node('Objects/Pistol')
+
+func _process(_delta): # use this function to refresh values
+	hitbox.get_shape().set_radius(Global.player_hitbox_r)
+	hitbox.get_shape().set_height(Global.player_hitbox_h)
 	
+	if hitbox.get_shape().get_radius() == Global.player_radius: # most ratchet ass code i've made. but it works - dom
+		BubbleSprite.play('off')
+	else:
+		BubbleSprite.play('on')
+		
+	if Global.give_bubble_health:
+		get_node('HealthComponent').damage(-Global.bubble_health)
+		Global.give_bubble_health = false
+		
 func damage(attack_damage, _knockback):
 	health -= attack_damage
 	if health <= 0:
@@ -84,10 +102,7 @@ func input(delta):
 		# Check if user has bubble...  this logic will change later 
 		if abilities['Bubble'] == true:
 			Global.bubble_on = true
-	if Global.bubble_on == true:
-		add_child(Bubble)
-		print(1)
-	
+			
 func movement(delta):
 	if Input.is_action_just_pressed('space'):
 		# Check if user collected dash

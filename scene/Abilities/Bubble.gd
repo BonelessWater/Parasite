@@ -1,29 +1,39 @@
-extends RigidBody2D
+extends Node2D
 
-@onready var timer = get_node('Cooldown')
-
-var max_health
+var hitbox
+var bubble_radius
+var player_radius
+var player_height
+var player_hitbox_r
+var player_hitbox_h
+var bubble_on := false
 var bubble_cooldown
-var bubble_on
+var bubble_duration
+
+@onready var cooldown = get_parent().get_parent().get_parent().get_node('Abilities/Bubble/Cooldown')
+@onready var duration = get_parent().get_parent().get_parent().get_node('Abilities/Bubble/Duration')
 
 func _ready():
-	max_health = Global.bubble_health
-	
 	# Setting up timer
 	bubble_cooldown = Global.bubble_cooldown
-	timer.set_wait_time(bubble_cooldown)
-	timer.set_one_shot(true)
-
-func _process(_delta):
-	bubble_on = Global.bubble_on
-	if bubble_on == true: 
-		timer.start()
+	cooldown.set_wait_time(bubble_cooldown)
+	cooldown.set_one_shot(true)
+	# Setting up timer
+	bubble_duration = Global.bubble_duration
+	duration.set_wait_time(bubble_duration)
+	duration.set_one_shot(true)
 	
-	#if get_node('HealthComponent').health <= 0:
-	#	Global.bubble_on = false
-	#el
-	if bubble_on:
-		if timer.time_left >= 0.05:
-			Global.bubble_on = false
-			queue_free()
+func _process(_delta):
+	if Global.bubble_on and cooldown.time_left <= 0.05:
+		Global.give_bubble_health = true
 		
+		cooldown.start()
+		duration.start()
+		
+	if duration.time_left >= 0.10:
+		Global.player_hitbox_r = Global.bubble_radius
+		Global.player_hitbox_h = Global.bubble_radius
+	else:
+		Global.player_hitbox_r = Global.player_radius
+		Global.player_hitbox_h = Global.player_height
+		Global.bubble_on = false

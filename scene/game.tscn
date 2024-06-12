@@ -6,7 +6,56 @@
 [ext_resource type="Script" path="res://script/weapons/Pistol.gd" id="4_8cd2e"]
 [ext_resource type="Script" path="res://script/abilities/Dash.gd" id="5_3gdox"]
 [ext_resource type="Script" path="res://scene/Abilities/AOE.gd" id="6_p5mte"]
-[ext_resource type="PackedScene" uid="uid://bg53a4j22jo71" path="res://scene/Abilities/bubble.tscn" id="7_jf40m"]
+
+[sub_resource type="GDScript" id="GDScript_1drjg"]
+script/source = "extends Node2D
+
+var hitbox
+var bubble_radius
+var player_radius
+var player_height
+var player_hitbox_r
+var player_hitbox_h
+var bubble_on := false
+var bubble_cooldown
+var bubble_duration
+
+
+@onready var cooldown = get_node('Cooldown')
+@onready var duration = get_node('Duration')
+
+func _ready():
+	bubble_radius = Global.bubble_radius
+	player_radius = Global.player_radius
+	player_height = Global.player_height
+	player_hitbox_r = Global.player_hitbox_r
+	player_hitbox_h = Global.player_hitbox_h
+	
+	# Setting up timer
+	bubble_cooldown = Global.bubble_cooldown
+	cooldown.set_wait_time(bubble_cooldown)
+	cooldown.set_one_shot(true)
+	# Setting up timer
+	bubble_duration = Global.bubble_duration
+	duration.set_wait_time(bubble_duration)
+	duration.set_one_shot(true)
+	
+func _process(_delta):
+	bubble_on = Global.bubble_on
+	if bubble_on == true and cooldown.time_left <= 0.05: 
+		duration.start()
+		cooldown.start()
+		Global.bubble_on = false
+	else:
+		Global.bubble_on = false
+		
+	if duration.time_left >= 0.10:
+		Global.player_hitbox_r = bubble_radius
+		Global.player_hitbox_h = bubble_radius
+	else:
+		Global.player_hitbox_r = player_radius
+		Global.player_hitbox_h = player_height
+"
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_gdixo")
@@ -54,5 +103,9 @@ script = ExtResource("6_p5mte")
 [node name="Cooldown" type="Timer" parent="Abilities/AOE"]
 one_shot = true
 
-[node name="Bubble" parent="Abilities" instance=ExtResource("7_jf40m")]
-position = Vector2(-824, -55)
+[node name="Bubble" type="Node2D" parent="Abilities"]
+script = SubResource("GDScript_1drjg")
+
+[node name="Cooldown" type="Timer" parent="Abilities/Bubble"]
+
+[node name="Duration" type="Timer" parent="Abilities/Bubble"]

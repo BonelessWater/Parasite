@@ -1,9 +1,13 @@
 extends Node
 # player
 @export var movement_speed := 30000.0
-@export var max_health := 100.0
+@export var max_health := 50.0
 @export var stamina := 5
 @export var max_sprint := 2
+@export var player_radius := 19 # radius of player hitbox
+@export var player_height := 52
+@onready var player_hitbox_r = player_radius
+@onready var player_hitbox_h = player_height
 
 # abilities
 
@@ -16,10 +20,11 @@ var dash_speed := 1
 
 # bubble
 var bubble_on := false
+var give_bubble_health := false
 @export var bubble_health := 30
-@export var bubble_cooldown := 1
-@export var bubble_radius := 50 # not used but is an interesing balancing point
-
+@export var bubble_cooldown := 10
+@export var bubble_duration := 5
+@export var bubble_radius := 100
 
 # MOBS
 
