@@ -15,6 +15,7 @@ func damage(attack_damage, knockback=0, knockback_dir=Vector2(0,0)):
 		health_assigned = true
 	health -= attack_damage
 	
+	
 	get_node('HealthBar').scale.x -= attack_damage/max_health
 		
 	if health <= 0:

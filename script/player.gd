@@ -90,6 +90,7 @@ func movement(delta):
 		if abilities['Dash'] == true:
 			game_node.is_dashing = true
 	dash_speed = game_node.dash_speed
+		
 	
 	var directionx = Input.get_axis("move_left", "move_right")
 	var directiony = Input.get_axis("move_up", "move_down")
@@ -124,6 +125,7 @@ func movement(delta):
 			$AnimatedSprite2D.flip_h = true
 		elif Input.is_action_just_pressed("move_up"):
 			curr_direction = 'back'
+			
 		elif Input.is_action_just_pressed("move_down"):
 			curr_direction = 'forward'
 
