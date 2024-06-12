@@ -1,17 +1,25 @@
 extends Node
 # player
-@export var movement_speed := 15000.0
+@export var movement_speed := 30000.0
 @export var max_health := 100.0
 @export var stamina := 5
 @export var max_sprint := 2
 
 # abilities
-var is_dashing := false
-@export var max_dash_speed := 20.0
-@export var dash_length := 0.15
-@export var dash_cooldown := 1
 
+# dash
+var is_dashing := false
+@export var max_dash_speed := 40.0
+@export var dash_length := 0.075
+@export var dash_cooldown := 1
 var dash_speed := 1
+
+# bubble
+var bubble_on := false
+@export var bubble_health := 30
+@export var bubble_cooldown := 1
+@export var bubble_radius := 50 # not used but is an interesing balancing point
+
 
 # MOBS
 
@@ -29,14 +37,4 @@ var level3
 var change_level = true
 var level_status
 
-var health = 100
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	pass
+@export var health := 100

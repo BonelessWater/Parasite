@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://bhjaqid1i2x2s"]
+
+[ext_resource type="Script" path="res://scene/AbilityDrops/Drop.gd" id="1_uifhp"]
+[ext_resource type="Texture2D" uid="uid://b7agyb2eafi82" path="res://assets/items/potion_01.png" id="2_4s4gc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2x0be"]
+radius = 17.1172
+
+[node name="Bubble" type="Node2D"]
+texture_filter = 1
+script = ExtResource("1_uifhp")
+ability_name = "Bubble"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_4s4gc")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_2x0be")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

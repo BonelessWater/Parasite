@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://bg53a4j22jo71"]
+
+[ext_resource type="Script" path="res://scene/Abilities/Bubble.gd" id="1_l8ch7"]
+[ext_resource type="Texture2D" uid="uid://bo14epqb0tqb4" path="res://assets/items/bomb_01.png" id="2_qv4ql"]
+[ext_resource type="PackedScene" uid="uid://cof0ofcondwxv" path="res://scene/Components/HealthComponent.tscn" id="3_kjsax"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k453h"]
+radius = 55.0
+
+[node name="Bubble" type="RigidBody2D"]
+script = ExtResource("1_l8ch7")
+
+[node name="HealthComponent" parent="." instance=ExtResource("3_kjsax")]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("2_qv4ql")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_k453h")
+
+[node name="Cooldown" type="Timer" parent="."]

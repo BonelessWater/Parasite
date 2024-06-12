@@ -30,9 +30,10 @@ var Shotgut
 var Rifle
 
 # Ability inventory
-var abilities := {'Dash': false, 'AOE': false}
+var abilities := {'Dash': false, 'AOE': false, 'Bubble': false}
 var Dash
 var AOE
+var Bubble
 
 var aim
 var game_node
@@ -45,12 +46,13 @@ func _ready():
 	movement_speed = Global.movement_speed
 	max_health = Global.max_health
 	max_sprint = Global.max_sprint
-	stamina =Global.stamina
+	stamina = Global.stamina
 	
 	ani = $AnimatedSprite2D
 	weaponShow = weaponShowPath.instantiate()
-	Dash = get_parent().get_parent().get_node('Abilities/Dash')
-	Pistol = get_parent().get_parent().get_node('Objects/Pistol')
+	Dash = game_node.get_node('Abilities/Dash')
+	Bubble = game_node.get_node('Abilities/Bubble')
+	Pistol = game_node.get_node('Objects/Pistol')
 	
 func damage(attack_damage, _knockback):
 	health -= attack_damage
@@ -72,24 +74,26 @@ func input(delta):
 				weaponSprite.region_rect = Rect2(0, 118, 12, 10)
 				weaponInHand = true
 				
-	# Run if user has dash in inventory
-	
-	
 	if Input.is_action_pressed('attack'):
-		# Check is user collected pistol
+		# Check if user collected pistol
 		if weapons['Pistol'] == true:
 			Pistol.use(delta)
 		# Add more weapons
 	
-	#distance_to_next_level = get_parent().get_node('GameLogic').distance_to_next_level
-	#get_node('Expbar').set_value(distance_to_next_level)
-
+	if Input.is_action_pressed('e'):
+		# Check if user has bubble...  this logic will change later 
+		if abilities['Bubble'] == true:
+			Global.bubble_on = true
+	if Global.bubble_on == true:
+		add_child(Bubble)
+		print(1)
+	
 func movement(delta):
 	if Input.is_action_just_pressed('space'):
 		# Check if user collected dash
 		if abilities['Dash'] == true:
-			game_node.is_dashing = true
-	dash_speed = game_node.dash_speed
+			Global.is_dashing = true
+	dash_speed = Global.dash_speed
 	
 	var directionx = Input.get_axis("move_left", "move_right")
 	var directiony = Input.get_axis("move_up", "move_down")
