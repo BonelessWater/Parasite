@@ -39,7 +39,8 @@ var game_node
 
 
 func _ready():
-	game_node =  get_parent().get_parent()
+	hitbox = get_node('Hitbox')
+	game_node = get_parent().get_parent()
 	
 	health = Global.max_health
 	movement_speed = Global.movement_speed
