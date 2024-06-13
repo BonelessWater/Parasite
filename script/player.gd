@@ -31,7 +31,7 @@ var Shotgut
 var Rifle
 
 # Ability inventory
-var abilities := {'Dash': false, 'AOE': false, 'Bubble': false}
+var abilities := {'Dash': false, 'AOE': false, 'Bubble': false, 'Ram': false}
 var Dash
 var AOE
 var Bubble
@@ -102,74 +102,87 @@ func input(delta):
 		# Check if user has bubble...  this logic will change later 
 		if abilities['Bubble'] == true:
 			Global.bubble_on = true
+		if abilities['Ram'] == true:
+			Global.is_ramming = true
 			
+	if Input.is_action_just_pressed("skill_tree"):
+		get_tree().change_scene_to_file("res://scene/skill_tree.tscn")
+		
 func movement(delta):
 	if Input.is_action_just_pressed('space'):
 		# Check if user collected dash
 		if abilities['Dash'] == true:
 			Global.is_dashing = true
-	dash_speed = Global.dash_speed
 	
 	var directionx = Input.get_axis("move_left", "move_right")
 	var directiony = Input.get_axis("move_up", "move_down")
+	
+	look_dir(directionx, directiony)
+
 	if Input.is_action_pressed('shift') and stamina > 0:
 		sprint = max_sprint
 	elif stamina < 5:
 		stamina += delta # smart use of delta :)
 	else:
 		sprint = 1
-	if Input.is_action_just_pressed("skill_tree"):
-		get_tree().change_scene_to_file("res://scene/skill_tree.tscn")
-		
-		
+
 	# Direction player wants to go
-	var wanted_velocity = Vector2(directionx, directiony)  * movement_speed * delta * sprint * dash_speed
+	var wanted_velocity = Vector2(directionx, directiony) * movement_speed * delta * sprint * Global.dash_speed
+	if wanted_velocity:
+		Global.last_vel = wanted_velocity
 	var velocity_delta = velocity - wanted_velocity
 	
-	velocity -= velocity_delta * 0.1 # increase the coefficient to make the movement feel more instant
-
+	if Global.is_ramming:
+		velocity = Global.ram_vel
+	else:
+		velocity -= velocity_delta * 0.1 # increase the coefficient to make the movement feel more instant
+		
 	if abs(velocity.x) <= 0.1:
 		velocity.x = 0 
 	if abs(velocity.y) <= 0.1:
 		velocity.y = 0 
-			
-	if velocity:
-	# Check for direction inputs and set the current direction
-		if Input.is_action_just_pressed("move_right"):
-			curr_direction = 'right'
-			$AnimatedSprite2D.flip_h = false
-		elif Input.is_action_just_pressed("move_left"):
-			curr_direction = 'left'
-			$AnimatedSprite2D.flip_h = true
-		elif Input.is_action_just_pressed("move_up"):
-			curr_direction = 'back'
-		elif Input.is_action_just_pressed("move_down"):
-			curr_direction = 'forward'
-
-	# Play the appropriate walking animation based on the current direction
-		match curr_direction:
-			'right', 'left':
-				ani.play('side_walk')
-			'back':
-				ani.play('back_walk')
-			'forward':
-				ani.play('forward_walk')
-	else:
-		velocity.x = move_toward(velocity.x, 0, movement_speed * delta * sprint * dash_speed)
-		velocity.y = move_toward(velocity.y, 0, movement_speed * delta * sprint * dash_speed)
-	
-	# Play the appropriate idle animation based on the current direction
-		match curr_direction:
-			'right', 'left':
-				ani.play('side')
-			'back':
-				ani.play('back')
-			'forward':
-				ani.play('forward')
-
 	move_and_slide()
 
+func look_dir(directionx, directiony):
+	if directionx > 0:
+		curr_direction = 'right'
+	elif directionx < 0:
+		curr_direction = 'left'
+	elif directionx < 0:
+		curr_direction = 'up'
+	else:
+		curr_direction = 'down'
+	
+	if directionx != 0:
+		ani.play('side_walk')
+	elif directiony < 0:
+		ani.play('back_walk')
+	elif directiony > 0:
+		ani.play('forward_walk')
+	else:
+		if curr_direction == 'left':
+			$AnimatedSprite2D.flip_h = true
+			ani.play('side')
+		elif curr_direction == 'right':
+			$AnimatedSprite2D.flip_h = false
+			ani.play('side')
+		elif curr_direction == 'back':
+			ani.play('back')
+		else:
+			ani.play('forward')
 
-# Identifier function, do not remove
+# Identifier function
 func player():
 	pass
+
+func _on_area_2d_body_entered(body):
+	if body.has_method('wall'):
+		Global.wall_col = true
+	elif body.has_method('door'):
+		Global.wall_col = true
+
+func _on_area_2d_body_exited(body):
+	if body.has_method('wall'):
+		Global.wall_col = false
+	elif body.has_method('door'):
+		Global.wall_col = false

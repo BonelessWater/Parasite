@@ -8,6 +8,10 @@ extends Node
 @export var player_height := 52
 @onready var player_hitbox_r = player_radius
 @onready var player_hitbox_h = player_height
+var last_vel
+var invul := false # abreviation for invulnerable: if the player is not able to take damage
+var wall_col
+var door_col
 
 # abilities
 
@@ -25,6 +29,14 @@ var give_bubble_health := false
 @export var bubble_cooldown := 10
 @export var bubble_duration := 5
 @export var bubble_radius := 100
+
+# ram
+var is_ramming := false 
+var ram_vel
+@export var ram_speed := 10.0
+@export var ram_damage := 10.0
+@export var ram_cooldown := 1
+@export var ram_knockback := 50
 
 # MOBS
 

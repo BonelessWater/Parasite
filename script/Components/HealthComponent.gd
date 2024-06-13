@@ -13,12 +13,14 @@ func damage(attack_damage, knockback=0, knockback_dir=Vector2(0,0)):
 	if !health_assigned:
 		health = max_health
 		health_assigned = true
-	health -= attack_damage
-	
-	get_node('HealthBar').scale.x -= attack_damage/max_health
+		
+	if Global.invul == false:
+		health -= attack_damage
+		get_node('HealthBar').scale.x -= attack_damage/max_health
+		get_parent().velocity += knockback * knockback_dir
 		
 	if health <= 0:
 		get_parent().queue_free()
 		
-	get_parent().velocity += knockback * knockback_dir
+	
 	

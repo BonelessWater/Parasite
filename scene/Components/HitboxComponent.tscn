@@ -6,38 +6,36 @@ script/source = "extends Area2D
 var attack_damage
 var knockback
 var knockback_dir
-var attack_speed
 var in_hitbox := false
 var timer
-var player
-
-var game_node
+var entity
 
 func _ready():
-	game_node = get_parent().get_parent()
-	
+	timer = get_node('AttackTimer')
 	if get_parent().has_method('mob'):
 		knockback = Global.mob1_knockback
-	
-	attack_damage = 10
-	attack_speed = 1.0
-	timer = get_node('AttackTimer')
-	timer.set_wait_time(attack_speed)
-
+		attack_damage = Global.mob1_attack_damage
+		timer.set_wait_time(Global.mob1_attack_speed)
+		
+	elif get_parent().has_method('player'):
+		knockback = Global.ram_knockback
+		attack_damage = Global.ram_damage 
+		timer.set_wait_time(Global.ram_speed)
+		
 func _process(_delta):
 	if in_hitbox and timer.time_left == 0:
-		knockback_dir = player.position - get_parent().position
-		player.get_node('HealthComponent').damage(attack_damage, knockback, knockback_dir)
+		knockback_dir = entity.position - get_parent().position
+		entity.get_node('HealthComponent').damage(attack_damage, knockback, knockback_dir)
 		timer.start()
 
 func _on_body_entered(body):
-	if body.has_method('player'): # This if statement goes first to prevent errors when hitting walls
+	if body.has_method('player') or (body.has_method('mob') and Global.invul): # This if statement goes first to prevent errors when hitting walls
 		if body.get_node('HealthComponent').has_method('damage'): 
 			in_hitbox = true
-			player = body # this is weird but confia
+			entity = body # this is weird but confia
 	
 func _on_body_exited(body):
-	if body.has_method('player'): # This if statement goes first to prevent errors when hitting walls
+	if body.has_method('player') or body.has_method('mob'): # This if statement goes first to prevent errors when hitting walls
 		if body.get_node('HealthComponent').has_method('damage'): 
 			in_hitbox = false
 "
