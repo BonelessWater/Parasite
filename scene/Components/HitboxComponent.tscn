@@ -23,10 +23,11 @@ func _ready():
 		timer.set_wait_time(Global.ram_speed)
 		
 func _process(_delta):
-	if in_hitbox and timer.time_left == 0:
-		knockback_dir = entity.position - get_parent().position
-		entity.get_node('HealthComponent').damage(attack_damage, knockback, knockback_dir)
-		timer.start()
+	if get_parent() != entity: # cant damage itself
+		if in_hitbox and timer.time_left == 0:
+			knockback_dir = entity.position - get_parent().position
+			entity.get_node('HealthComponent').damage(attack_damage, knockback, knockback_dir)
+			timer.start()
 
 func _on_body_entered(body):
 	if body.has_method('player') or (body.has_method('mob') and Global.invul): # This if statement goes first to prevent errors when hitting walls
