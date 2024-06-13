@@ -11,14 +11,17 @@ var follow
 var wanted_velocity
 var velocity_delta
 	
+var game_node
 
 func _ready():
-	health = Global.mob1_max_health
-	max_health = Global.mob1_max_health
+	game_node = get_parent().get_parent()
 	
-	speed = Global.mob1_speed
-	attack_damage = Global.mob1_attack_damage
-	attack_speed = Global.mob1_attack_damage
+	health = game_node.mob1_max_health
+	max_health = game_node.mob1_max_health
+	
+	speed = game_node.mob1_speed
+	attack_damage = game_node.mob1_attack_damage
+	attack_speed = game_node.mob1_attack_damage
 	
 func _physics_process(delta):
 	if follow:
