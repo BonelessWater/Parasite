@@ -1,17 +1,42 @@
 extends Node
 # player
-@export var movement_speed := 15000.0
-@export var max_health := 100.0
+@export var movement_speed := 30000.0
+@export var max_health := 50.0
 @export var stamina := 5
 @export var max_sprint := 2
+@export var player_radius := 19 # radius of player hitbox
+@export var player_height := 52
+@onready var player_hitbox_r = player_radius
+@onready var player_hitbox_h = player_height
+var last_vel
+var invul := false # abreviation for invulnerable: if the player is not able to take damage
+var wall_col
+var door_col
 
 # abilities
-var is_dashing := false
-@export var max_dash_speed := 20.0
-@export var dash_length := 0.15
-@export var dash_cooldown := 1
 
+# dash
+var is_dashing := false
+@export var max_dash_speed := 40.0
+@export var dash_length := 0.075
+@export var dash_cooldown := 1
 var dash_speed := 1
+
+# bubble
+var bubble_on := false
+var give_bubble_health := false
+@export var bubble_health := 30
+@export var bubble_cooldown := 10
+@export var bubble_duration := 5
+@export var bubble_radius := 100
+
+# ram
+var is_ramming := false 
+var ram_vel
+@export var ram_speed := 10.0
+@export var ram_damage := 10.0
+@export var ram_cooldown := 1
+@export var ram_knockback := 50
 
 # MOBS
 
@@ -29,14 +54,4 @@ var level3
 var change_level = true
 var level_status
 
-var health = 100
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	pass
+@export var health := 100
