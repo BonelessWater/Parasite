@@ -335,7 +335,6 @@ zoom = Vector2(2, 2)
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_rypiv")
-disabled = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 process_priority = 2

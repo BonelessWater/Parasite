@@ -42,7 +42,7 @@ var game_node
 var hitbox
 
 func _ready():
-	hitbox = get_node('HitboxComponent/CollisionShape2D')
+	hitbox = get_node('Hitbox')
 	game_node = get_parent().get_parent()
 	
 	health = Global.max_health
