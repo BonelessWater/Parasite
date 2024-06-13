@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://dnoykymj28448"]
+
+[ext_resource type="Texture2D" uid="uid://t2s48gfghn3e" path="res://assets/buddie0 sprite sheet x1.png" id="1_7hs5b"]
+[ext_resource type="Texture2D" uid="uid://c0dw0y3rwvoyh" path="res://assets/items/stone_01.png" id="1_vhnng"]
+[ext_resource type="Script" path="res://scene/Abilities/Bubble.gd" id="3_4qfp2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nfceb"]
+atlas = ExtResource("1_7hs5b")
+region = Rect2(192, 240, 64, 240)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6nocl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nfceb")
+}],
+"loop": true,
+"name": &"off",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_vhnng")
+}],
+"loop": true,
+"name": &"on",
+"speed": 5.0
+}]
+
+[node name="BubbleSprite" type="AnimatedSprite2D"]
+texture_filter = 1
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_6nocl")
+animation = &"on"
+script = ExtResource("3_4qfp2")

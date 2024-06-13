@@ -14,6 +14,7 @@ var dash_speed
 var movement_speed
 var max_sprint
 var stamina
+var player_radius
 var curr_direction := 'forward'
 
 var distance_to_next_level := 0
@@ -30,28 +31,47 @@ var Shotgut
 var Rifle
 
 # Ability inventory
-var abilities := {'Dash': false, 'AOE': false}
+var abilities := {'Dash': false, 'AOE': false, 'Bubble': false, 'Ram': false}
 var Dash
 var AOE
-
+var Bubble
+var BubbleSprite
 var aim
-var game_node
 
+var game_node
+var hitbox
 
 func _ready():
-	game_node =  get_parent().get_parent()
+	hitbox = get_node('Hitbox')
+	game_node = get_parent().get_parent()
 	
 	health = Global.max_health
 	movement_speed = Global.movement_speed
 	max_health = Global.max_health
 	max_sprint = Global.max_sprint
-	stamina =Global.stamina
+	stamina = Global.stamina
 	
 	ani = $AnimatedSprite2D
-	weaponShow = weaponShowPath.instantiate()
-	Dash = get_parent().get_parent().get_node('Abilities/Dash')
-	Pistol = get_parent().get_parent().get_node('Objects/Pistol')
 	
+	weaponShow = weaponShowPath.instantiate()
+	Dash = game_node.get_node('Abilities/Dash')
+	Bubble = game_node.get_node('Abilities/Bubble')
+	BubbleSprite = $BubbleSprite
+	Pistol = game_node.get_node('Objects/Pistol')
+
+func _process(_delta): # use this function to refresh values
+	hitbox.get_shape().set_radius(Global.player_hitbox_r)
+	hitbox.get_shape().set_height(Global.player_hitbox_h)
+	
+	if hitbox.get_shape().get_radius() == Global.player_radius: # most ratchet ass code i've made. but it works - dom
+		BubbleSprite.play('off')
+	else:
+		BubbleSprite.play('on')
+		
+	if Global.give_bubble_health:
+		get_node('HealthComponent').damage(-Global.bubble_health)
+		Global.give_bubble_health = false
+		
 func damage(attack_damage, _knockback):
 	health -= attack_damage
 	if health <= 0:
@@ -72,87 +92,101 @@ func input(delta):
 				weaponSprite.region_rect = Rect2(0, 118, 12, 10)
 				weaponInHand = true
 				
-	# Run if user has dash in inventory
-	
-	
 	if Input.is_action_pressed('attack'):
-		# Check is user collected pistol
+		# Check if user collected pistol
 		if weapons['Pistol'] == true:
 			Pistol.use(delta)
 		# Add more weapons
 	
-	#distance_to_next_level = get_parent().get_node('GameLogic').distance_to_next_level
-	#get_node('Expbar').set_value(distance_to_next_level)
-
+	if Input.is_action_pressed('e'):
+		# Check if user has bubble...  this logic will change later 
+		if abilities['Bubble'] == true:
+			Global.bubble_on = true
+		if abilities['Ram'] == true:
+			Global.is_ramming = true
+			
+	if Input.is_action_just_pressed("skill_tree"):
+		get_tree().change_scene_to_file("res://scene/skill_tree.tscn")
+		
 func movement(delta):
 	if Input.is_action_just_pressed('space'):
 		# Check if user collected dash
 		if abilities['Dash'] == true:
-			game_node.is_dashing = true
-	dash_speed = game_node.dash_speed
-		
+			Global.is_dashing = true
 	
 	var directionx = Input.get_axis("move_left", "move_right")
 	var directiony = Input.get_axis("move_up", "move_down")
+	
+	look_dir(directionx, directiony)
+
 	if Input.is_action_pressed('shift') and stamina > 0:
 		sprint = max_sprint
 	elif stamina < 5:
 		stamina += delta # smart use of delta :)
 	else:
 		sprint = 1
-	if Input.is_action_just_pressed("skill_tree"):
-		get_tree().change_scene_to_file("res://scene/skill_tree.tscn")
-		
-		
+
 	# Direction player wants to go
-	var wanted_velocity = Vector2(directionx, directiony)  * movement_speed * delta * sprint * dash_speed
+	var wanted_velocity = Vector2(directionx, directiony) * movement_speed * delta * sprint * Global.dash_speed
+	if wanted_velocity:
+		Global.last_vel = wanted_velocity
 	var velocity_delta = velocity - wanted_velocity
 	
-	velocity -= velocity_delta * 0.1 # increase the coefficient to make the movement feel more instant
-
+	if Global.is_ramming:
+		velocity = Global.ram_vel
+	else:
+		velocity -= velocity_delta * 0.1 # increase the coefficient to make the movement feel more instant
+		
 	if abs(velocity.x) <= 0.1:
 		velocity.x = 0 
 	if abs(velocity.y) <= 0.1:
 		velocity.y = 0 
-			
-	if velocity:
-	# Check for direction inputs and set the current direction
-		if Input.is_action_just_pressed("move_right"):
-			curr_direction = 'right'
-			$AnimatedSprite2D.flip_h = false
-		elif Input.is_action_just_pressed("move_left"):
-			curr_direction = 'left'
-			$AnimatedSprite2D.flip_h = true
-		elif Input.is_action_just_pressed("move_up"):
-			curr_direction = 'back'
-			
-		elif Input.is_action_just_pressed("move_down"):
-			curr_direction = 'forward'
-
-	# Play the appropriate walking animation based on the current direction
-		match curr_direction:
-			'right', 'left':
-				ani.play('side_walk')
-			'back':
-				ani.play('back_walk')
-			'forward':
-				ani.play('forward_walk')
-	else:
-		velocity.x = move_toward(velocity.x, 0, movement_speed * delta * sprint * dash_speed)
-		velocity.y = move_toward(velocity.y, 0, movement_speed * delta * sprint * dash_speed)
-	
-	# Play the appropriate idle animation based on the current direction
-		match curr_direction:
-			'right', 'left':
-				ani.play('side')
-			'back':
-				ani.play('back')
-			'forward':
-				ani.play('forward')
-
 	move_and_slide()
 
+func look_dir(directionx, directiony):
+	if directionx > 0:
+		curr_direction = 'right'
+	elif directionx < 0:
+		curr_direction = 'left'
+	elif directionx < 0:
+		curr_direction = 'up'
+	else:
+		curr_direction = 'down'
+	
+	if directionx != 0:
+		ani.play('side_walk')
+		if directionx > 0:
+			$AnimatedSprite2D.flip_h = false
+		else:
+			$AnimatedSprite2D.flip_h = true
+	elif directiony < 0:
+		ani.play('back_walk')
+	elif directiony > 0:
+		ani.play('forward_walk')
+	else:
+		if curr_direction == 'left':
+			$AnimatedSprite2D.flip_h = false
+			ani.play('side')
+		elif curr_direction == 'right':
+			$AnimatedSprite2D.flip_h = true
+			ani.play('side')
+		elif curr_direction == 'back':
+			ani.play('back')
+		else:
+			ani.play('forward')
 
-# Identifier function, do not remove
+# Identifier function
 func player():
 	pass
+
+func _on_area_2d_body_entered(body):
+	if body.has_method('wall'):
+		Global.wall_col = true
+	elif body.has_method('door'):
+		Global.wall_col = true
+
+func _on_area_2d_body_exited(body):
+	if body.has_method('wall'):
+		Global.wall_col = false
+	elif body.has_method('door'):
+		Global.wall_col = false
