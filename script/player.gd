@@ -155,16 +155,20 @@ func look_dir(directionx, directiony):
 	
 	if directionx != 0:
 		ani.play('side_walk')
+		if directionx > 0:
+			$AnimatedSprite2D.flip_h = false
+		else:
+			$AnimatedSprite2D.flip_h = true
 	elif directiony < 0:
 		ani.play('back_walk')
 	elif directiony > 0:
 		ani.play('forward_walk')
 	else:
 		if curr_direction == 'left':
-			$AnimatedSprite2D.flip_h = true
+			$AnimatedSprite2D.flip_h = false
 			ani.play('side')
 		elif curr_direction == 'right':
-			$AnimatedSprite2D.flip_h = false
+			$AnimatedSprite2D.flip_h = true
 			ani.play('side')
 		elif curr_direction == 'back':
 			ani.play('back')
