@@ -106,4 +106,3 @@ shape = SubResource("CircleShape2D_vkbnp")
 
 [connection signal="body_entered" from="ViewRange" to="." method="_on_view_range_body_entered"]
 [connection signal="body_exited" from="ViewRange" to="." method="_on_view_range_body_exited"]
-[connection signal="area_shape_entered" from="HitboxComponent" to="." method="_on_hitbox_component_area_shape_entered"]
