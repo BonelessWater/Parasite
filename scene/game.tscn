@@ -1,24 +1,105 @@
-[gd_scene load_steps=7 format=3 uid="uid://y5m717rfnc30"]
+[gd_scene load_steps=10 format=3 uid="uid://y5m717rfnc30"]
 
 [ext_resource type="Script" path="res://script/game.gd" id="1_gdixo"]
 [ext_resource type="PackedScene" uid="uid://dfr36sejdm04d" path="res://scene/Levels/tutorial.tscn" id="2_x3ken"]
 [ext_resource type="Script" path="res://script/Logic.gd" id="3_plwna"]
 [ext_resource type="Script" path="res://script/weapons/Pistol.gd" id="4_8cd2e"]
 [ext_resource type="Script" path="res://script/abilities/Dash.gd" id="5_3gdox"]
-[ext_resource type="Script" path="res://scene/AOE.gd" id="6_34d0y"]
+[ext_resource type="Script" path="res://scene/Ram.gd" id="5_b1spt"]
+[ext_resource type="Script" path="res://scene/Abilities/AOE.gd" id="6_p5mte"]
+[ext_resource type="PackedScene" uid="uid://cut20e7f0t14" path="res://in_game_menu_ui.tscn" id="8_ykcuc"]
+
+[sub_resource type="GDScript" id="GDScript_1drjg"]
+script/source = "extends Node2D
+
+var hitbox
+var bubble_radius
+var player_radius
+var player_height
+var player_hitbox_r
+var player_hitbox_h
+var bubble_on := false
+var bubble_cooldown
+var bubble_duration
+
+
+@onready var cooldown = get_node('Cooldown')
+@onready var duration = get_node('Duration')
+
+func _ready():
+	bubble_radius = Global.bubble_radius
+	player_radius = Global.player_radius
+	player_height = Global.player_height
+	player_hitbox_r = Global.player_hitbox_r
+	player_hitbox_h = Global.player_hitbox_h
+	
+	# Setting up timer
+	bubble_cooldown = Global.bubble_cooldown
+	cooldown.set_wait_time(bubble_cooldown)
+	cooldown.set_one_shot(true)
+	# Setting up timer
+	bubble_duration = Global.bubble_duration
+	duration.set_wait_time(bubble_duration)
+	duration.set_one_shot(true)
+	
+func _process(_delta):
+	bubble_on = Global.bubble_on
+	if bubble_on == true and cooldown.time_left <= 0.05: 
+		duration.start()
+		cooldown.start()
+		Global.bubble_on = false
+	else:
+		Global.bubble_on = false
+		
+	if duration.time_left >= 0.10:
+		Global.player_hitbox_r = bubble_radius
+		Global.player_hitbox_h = bubble_radius
+	else:
+		Global.player_hitbox_r = player_radius
+		Global.player_hitbox_h = player_height
+"
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_gdixo")
-dash_length = 0.05
 
 [node name="Tutorial" parent="." instance=ExtResource("2_x3ken")]
-position = Vector2(-5, 0)
+position = Vector2(5, 6)
 
 [node name="Level1" type="Node2D" parent="."]
 
 [node name="Level2" type="Node2D" parent="."]
 
 [node name="Level3" type="Node2D" parent="."]
+
+[node name="in game menu ui" parent="." instance=ExtResource("8_ykcuc")]
+
+[node name="Control2" type="Control" parent="in game menu ui"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Panel" type="Panel" parent="in game menu ui/Control2"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="in game menu ui/Control2/Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Pause Menu" type="Label" parent="in game menu ui/Control2/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Resume" type="Button" parent="in game menu ui/Control2/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Opitons" type="Button" parent="in game menu ui/Control2/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Quit" type="Button" parent="in game menu ui/Control2/Panel/VBoxContainer"]
+layout_mode = 2
 
 [node name="Logic" type="Node2D" parent="."]
 script = ExtResource("3_plwna")
@@ -38,6 +119,11 @@ position = Vector2(30, 0)
 
 [node name="Abilities" type="Node2D" parent="."]
 
+[node name="Ram" type="Node2D" parent="Abilities"]
+script = ExtResource("5_b1spt")
+
+[node name="Cooldown" type="Timer" parent="Abilities/Ram"]
+
 [node name="Dash" type="Node2D" parent="Abilities"]
 script = ExtResource("5_3gdox")
 
@@ -48,7 +134,15 @@ one_shot = true
 one_shot = true
 
 [node name="AOE" type="Node2D" parent="Abilities"]
-script = ExtResource("6_34d0y")
+position = Vector2(-1, -1)
+script = ExtResource("6_p5mte")
 
 [node name="Cooldown" type="Timer" parent="Abilities/AOE"]
 one_shot = true
+
+[node name="Bubble" type="Node2D" parent="Abilities"]
+script = SubResource("GDScript_1drjg")
+
+[node name="Cooldown" type="Timer" parent="Abilities/Bubble"]
+
+[node name="Duration" type="Timer" parent="Abilities/Bubble"]
