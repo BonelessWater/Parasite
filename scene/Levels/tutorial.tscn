@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dfr36sejdm04d"]
+[gd_scene load_steps=16 format=3 uid="uid://dfr36sejdm04d"]
 
 [ext_resource type="Script" path="res://script/Levels/Tutorial.gd" id="1_f2v8q"]
 [ext_resource type="Texture2D" uid="uid://b1pivas10ax32" path="res://assets/TileSet v1.0.png" id="2_rqo6p"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://eopj331k416a" path="res://scene/WeaponDrops/pistol.tscn" id="5_fwm6c"]
 [ext_resource type="FontFile" uid="uid://d4i8qyyt0eo38" path="res://assets/fonts.webp" id="5_yoisl"]
 [ext_resource type="AudioStream" uid="uid://c2w8jjw3hugdh" path="res://assets/audio/emulation_of_game.wav" id="6_lfhgy"]
+[ext_resource type="PackedScene" uid="uid://bbrgmvfixhwlq" path="res://scene/AbilityDrops/Ram.tscn" id="6_vacy8"]
 [ext_resource type="PackedScene" uid="uid://db6d61i8omd24" path="res://scene/door.tscn" id="9_igare"]
 [ext_resource type="PackedScene" uid="uid://ljyyn0jvnj1q" path="res://scene/key.tscn" id="10_5bju0"]
 
@@ -303,7 +304,7 @@ script = ExtResource("1_f2v8q")
 motion_scale = Vector2(0.3, 0.3)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2(1928, 247)
+position = Vector2(2338, 364)
 scale = Vector2(12, 8.233)
 texture = ExtResource("3_cgdmh")
 
@@ -316,11 +317,14 @@ script = ExtResource("3_k641l")
 [node name="Dash" parent="." instance=ExtResource("3_u1ihy")]
 position = Vector2(350, 245)
 
+[node name="Ram" parent="." instance=ExtResource("6_vacy8")]
+position = Vector2(394, 246)
+
 [node name="Pistol" parent="." instance=ExtResource("5_fwm6c")]
 position = Vector2(585, 243)
 
 [node name="TextBoxes" type="Node2D" parent="."]
-position = Vector2(0, -19)
+position = Vector2(3, -18)
 
 [node name="Movement" type="RichTextLabel" parent="TextBoxes"]
 texture_filter = 1
@@ -376,14 +380,13 @@ position = Vector2(2337, 225)
 motion_mode = 1
 
 [node name="RoomLabels" type="Node2D" parent="."]
-position = Vector2(0, -19)
 
 [node name="label1" type="RichTextLabel" parent="RoomLabels"]
 texture_filter = 1
-offset_left = 416.0
-offset_top = -5.0
-offset_right = 435.0
-offset_bottom = 14.0
+offset_left = 417.0
+offset_top = -18.0
+offset_right = 436.0
+offset_bottom = 1.0
 theme_override_fonts/normal_font = ExtResource("5_yoisl")
 text = "1"
 
@@ -473,7 +476,7 @@ position = Vector2(3318, 806)
 direction = "up"
 
 [node name="Key" type="Node2D" parent="."]
-position = Vector2(-4, 10)
+position = Vector2(697, 249)
 
 [node name="key" parent="Key" instance=ExtResource("10_5bju0")]
-position = Vector2(630, 236)
+position = Vector2(1, 0)
