@@ -13,6 +13,7 @@ func _ready():
 	level2 = get_node('Level2')
 	level3 = get_node('Level3')
 	
+	
 	menu_ui()
 
 func menu_ui():

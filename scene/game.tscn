@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://y5m717rfnc30"]
+[gd_scene load_steps=10 format=3 uid="uid://y5m717rfnc30"]
 
 [ext_resource type="Script" path="res://script/game.gd" id="1_gdixo"]
 [ext_resource type="PackedScene" uid="uid://dfr36sejdm04d" path="res://scene/Levels/tutorial.tscn" id="2_x3ken"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://script/abilities/Dash.gd" id="5_3gdox"]
 [ext_resource type="Script" path="res://scene/Ram.gd" id="5_b1spt"]
 [ext_resource type="Script" path="res://scene/Abilities/AOE.gd" id="6_p5mte"]
+[ext_resource type="PackedScene" uid="uid://cut20e7f0t14" path="res://in_game_menu_ui.tscn" id="8_ykcuc"]
 
 [sub_resource type="GDScript" id="GDScript_1drjg"]
 script/source = "extends Node2D
@@ -62,13 +63,43 @@ func _process(_delta):
 script = ExtResource("1_gdixo")
 
 [node name="Tutorial" parent="." instance=ExtResource("2_x3ken")]
-position = Vector2(-5, 0)
+position = Vector2(5, 6)
 
 [node name="Level1" type="Node2D" parent="."]
 
 [node name="Level2" type="Node2D" parent="."]
 
 [node name="Level3" type="Node2D" parent="."]
+
+[node name="in game menu ui" parent="." instance=ExtResource("8_ykcuc")]
+
+[node name="Control2" type="Control" parent="in game menu ui"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Panel" type="Panel" parent="in game menu ui/Control2"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="in game menu ui/Control2/Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Pause Menu" type="Label" parent="in game menu ui/Control2/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Resume" type="Button" parent="in game menu ui/Control2/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Opitons" type="Button" parent="in game menu ui/Control2/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Quit" type="Button" parent="in game menu ui/Control2/Panel/VBoxContainer"]
+layout_mode = 2
 
 [node name="Logic" type="Node2D" parent="."]
 script = ExtResource("3_plwna")
