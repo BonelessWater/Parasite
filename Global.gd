@@ -13,6 +13,29 @@ var invul := false # abreviation for invulnerable: if the player is not able to 
 var wall_col
 var door_col
 
+# WEAPONS
+var weapon_name
+var set_gun_timer := false
+# pistol
+@export var pistol_damage := 10.0
+@export var pistol_firerate := 0.1
+@export var pistol_range := 10.0
+@export var pistol_speed := 500.0
+@export var pistol_knockback := 10.0
+
+# shotgun
+@export var shotgun_damage := 10.0
+@export var shotgun_firerate := 0.1
+@export var shotgun_range := 10.0
+@export var shotgun_speed := 500.0
+@export var shotgun_knockback := 10.0
+
+@export var shotgun_spread_angle := PI/5 
+@export var shotgun_num_bullets := 3
+
+
+
+
 # abilities
 
 # dash

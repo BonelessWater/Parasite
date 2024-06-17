@@ -6,10 +6,10 @@
 [ext_resource type="Script" path="res://scene/Levels/TileMap.gd" id="3_k641l"]
 [ext_resource type="PackedScene" uid="uid://bfwllfb0u0ios" path="res://scene/AbilityDrops/Dash.tscn" id="3_u1ihy"]
 [ext_resource type="PackedScene" uid="uid://cto7cgpyhq87d" path="res://scene/mob.tscn" id="3_wro1i"]
-[ext_resource type="PackedScene" uid="uid://eopj331k416a" path="res://scene/WeaponDrops/pistol.tscn" id="5_fwm6c"]
 [ext_resource type="FontFile" uid="uid://d4i8qyyt0eo38" path="res://assets/fonts.webp" id="5_yoisl"]
 [ext_resource type="AudioStream" uid="uid://c2w8jjw3hugdh" path="res://assets/audio/emulation_of_game.wav" id="6_lfhgy"]
 [ext_resource type="PackedScene" uid="uid://bbrgmvfixhwlq" path="res://scene/AbilityDrops/Ram.tscn" id="6_vacy8"]
+[ext_resource type="PackedScene" uid="uid://eopj331k416a" path="res://scene/WeaponDrops/weapon.tscn" id="7_qmbxl"]
 [ext_resource type="PackedScene" uid="uid://db6d61i8omd24" path="res://scene/door.tscn" id="9_igare"]
 [ext_resource type="PackedScene" uid="uid://ljyyn0jvnj1q" path="res://scene/key.tscn" id="10_5bju0"]
 
@@ -308,6 +308,62 @@ position = Vector2(2338, 364)
 scale = Vector2(12, 8.233)
 texture = ExtResource("3_cgdmh")
 
+[node name="RoomLabels" type="Node2D" parent="."]
+
+[node name="label1" type="RichTextLabel" parent="RoomLabels"]
+texture_filter = 1
+offset_left = 417.0
+offset_top = -18.0
+offset_right = 436.0
+offset_bottom = 1.0
+theme_override_fonts/normal_font = ExtResource("5_yoisl")
+text = "1"
+
+[node name="label2" type="RichTextLabel" parent="RoomLabels"]
+texture_filter = 1
+offset_left = 2169.0
+offset_top = -14.0
+offset_right = 2188.0
+offset_bottom = 5.0
+theme_override_fonts/normal_font = ExtResource("5_yoisl")
+text = "2"
+
+[node name="label3" type="RichTextLabel" parent="RoomLabels"]
+texture_filter = 1
+offset_left = 2155.0
+offset_top = -1073.0
+offset_right = 2174.0
+offset_bottom = -1054.0
+theme_override_fonts/normal_font = ExtResource("5_yoisl")
+text = "3"
+
+[node name="label4" type="RichTextLabel" parent="RoomLabels"]
+texture_filter = 1
+offset_left = 3769.0
+offset_top = -1083.0
+offset_right = 3788.0
+offset_bottom = -1064.0
+theme_override_fonts/normal_font = ExtResource("5_yoisl")
+text = "4"
+
+[node name="label5" type="RichTextLabel" parent="RoomLabels"]
+texture_filter = 1
+offset_left = 3755.0
+offset_top = -15.0
+offset_right = 3774.0
+offset_bottom = 4.0
+theme_override_fonts/normal_font = ExtResource("5_yoisl")
+text = "5"
+
+[node name="label6" type="RichTextLabel" parent="RoomLabels"]
+texture_filter = 1
+offset_left = 3738.0
+offset_top = 1074.0
+offset_right = 3757.0
+offset_bottom = 1093.0
+theme_override_fonts/normal_font = ExtResource("5_yoisl")
+text = "6"
+
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_7mc6j")
 format = 2
@@ -320,8 +376,12 @@ position = Vector2(350, 245)
 [node name="Ram" parent="." instance=ExtResource("6_vacy8")]
 position = Vector2(394, 246)
 
-[node name="Pistol" parent="." instance=ExtResource("5_fwm6c")]
-position = Vector2(585, 243)
+[node name="Pistol" parent="." instance=ExtResource("7_qmbxl")]
+position = Vector2(336, 156)
+
+[node name="Shotgun" parent="." instance=ExtResource("7_qmbxl")]
+position = Vector2(211, 120)
+weapon_name = "Shotgun"
 
 [node name="TextBoxes" type="Node2D" parent="."]
 position = Vector2(3, -18)
@@ -378,62 +438,6 @@ script = SubResource("GDScript_kdnel")
 [node name="Mob" parent="." instance=ExtResource("3_wro1i")]
 position = Vector2(2337, 225)
 motion_mode = 1
-
-[node name="RoomLabels" type="Node2D" parent="."]
-
-[node name="label1" type="RichTextLabel" parent="RoomLabels"]
-texture_filter = 1
-offset_left = 417.0
-offset_top = -18.0
-offset_right = 436.0
-offset_bottom = 1.0
-theme_override_fonts/normal_font = ExtResource("5_yoisl")
-text = "1"
-
-[node name="label2" type="RichTextLabel" parent="RoomLabels"]
-texture_filter = 1
-offset_left = 2169.0
-offset_top = -14.0
-offset_right = 2188.0
-offset_bottom = 5.0
-theme_override_fonts/normal_font = ExtResource("5_yoisl")
-text = "2"
-
-[node name="label3" type="RichTextLabel" parent="RoomLabels"]
-texture_filter = 1
-offset_left = 2155.0
-offset_top = -1073.0
-offset_right = 2174.0
-offset_bottom = -1054.0
-theme_override_fonts/normal_font = ExtResource("5_yoisl")
-text = "3"
-
-[node name="label4" type="RichTextLabel" parent="RoomLabels"]
-texture_filter = 1
-offset_left = 3769.0
-offset_top = -1083.0
-offset_right = 3788.0
-offset_bottom = -1064.0
-theme_override_fonts/normal_font = ExtResource("5_yoisl")
-text = "4"
-
-[node name="label5" type="RichTextLabel" parent="RoomLabels"]
-texture_filter = 1
-offset_left = 3755.0
-offset_top = -15.0
-offset_right = 3774.0
-offset_bottom = 4.0
-theme_override_fonts/normal_font = ExtResource("5_yoisl")
-text = "5"
-
-[node name="label6" type="RichTextLabel" parent="RoomLabels"]
-texture_filter = 1
-offset_left = 3738.0
-offset_top = 1074.0
-offset_right = 3757.0
-offset_bottom = 1093.0
-theme_override_fonts/normal_font = ExtResource("5_yoisl")
-text = "6"
 
 [node name="Doors" type="Node2D" parent="."]
 position = Vector2(814, 272)

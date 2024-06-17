@@ -108,7 +108,6 @@ script = ExtResource("3_plwna")
 
 [node name="Pistol" type="Node2D" parent="Objects"]
 script = ExtResource("4_8cd2e")
-attack_speed = 0.4
 
 [node name="Marker2D" type="Marker2D" parent="Objects/Pistol"]
 position = Vector2(30, 0)
@@ -116,6 +115,17 @@ position = Vector2(30, 0)
 [node name="Sprite2D" type="Sprite2D" parent="Objects/Pistol"]
 
 [node name="Timer" type="Timer" parent="Objects/Pistol"]
+
+[node name="Shotgun" type="Node2D" parent="Objects"]
+script = ExtResource("4_8cd2e")
+
+[node name="Marker2D" type="Marker2D" parent="Objects/Shotgun"]
+position = Vector2(30, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Objects/Shotgun"]
+position = Vector2(30, 0)
+
+[node name="Timer" type="Timer" parent="Objects/Shotgun"]
 
 [node name="Abilities" type="Node2D" parent="."]
 

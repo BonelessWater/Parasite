@@ -20,14 +20,11 @@ var curr_direction := 'forward'
 var distance_to_next_level := 0
 
 # Weapon inventory
-const weaponShowPath := preload('res://scene/WeaponDrops/WeaponShow.tscn')
-var weaponShow
-var weaponSprite
 var weaponInHand := false
 
 var weapons := {'Pistol': false, 'Shotgun': false, 'Rifle': false}
 var Pistol
-var Shotgut
+var Shotgun
 var Rifle
 
 # Ability inventory
@@ -53,11 +50,11 @@ func _ready():
 	
 	ani = $AnimatedSprite2D
 	
-	weaponShow = weaponShowPath.instantiate()
 	Dash = game_node.get_node('Abilities/Dash')
 	Bubble = game_node.get_node('Abilities/Bubble')
 	BubbleSprite = $BubbleSprite
 	Pistol = game_node.get_node('Objects/Pistol')
+	Shotgun = game_node.get_node('Objects/Shotgun')
 
 func _process(_delta): # use this function to refresh values
 	hitbox.get_shape().set_radius(Global.player_hitbox_r)
@@ -80,22 +77,14 @@ func damage(attack_damage, _knockback):
 	taking_damage = true
 
 func input(delta):
-	# Check what weapon is in player's hand
-	for weapon in weapons:
-		if weapons[weapon] == true:
-			if weapon == 'Pistol' and weaponInHand == false:
-				add_child(weaponShow)
-				weaponSprite = get_node('WeaponShow/Sprite2D')
-				# This code takes a specific pistol from a large image of weapons
-				weaponSprite.texture = ResourceLoader.load('res://assets/weapons/1.png')
-				weaponSprite.region_enabled = true
-				weaponSprite.region_rect = Rect2(0, 118, 12, 10)
-				weaponInHand = true
-				
 	if Input.is_action_pressed('attack'):
 		# Check if user collected pistol
 		if weapons['Pistol'] == true:
+			Global.weapon_name = 'Pistol'
 			Pistol.use(delta)
+		if weapons['Shotgun'] == true:
+			Global.weapon_name = 'Shotgun'
+			Shotgun.use(delta)
 		# Add more weapons
 	
 	if Input.is_action_pressed('e'):

@@ -8,11 +8,11 @@ var spread_range
 var spread_angle
 var bullets_spread
 var knockback := 1000000
-var weapon_type
+var weapon_name
 var bullet_dir
 
 func _ready():
-	attack_damage = get_parent().get_parent().get_node('Objects/' + weapon_type).attack_damage
+	attack_damage = get_parent().get_parent().get_node('Objects/' + weapon_name).attack_damage
 
 func _physics_process(delta):
 	var _collision_info = move_and_collide(velocity.normalized() * delta * projectile_speed)
