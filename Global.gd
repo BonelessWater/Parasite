@@ -37,7 +37,7 @@ var set_gun_timer := false
 
 
 # abilities
-
+var abilities := {'Dash': false, 'AOE': false, 'Bubble': false, 'Ram': false, 'Bulldozer': false}
 # dash
 var is_dashing := false
 @export var max_dash_speed := 40.0
@@ -61,6 +61,15 @@ var ram_vel
 @export var ram_cooldown := 1
 @export var ram_knockback := 50
 
+
+#bulldozer
+var is_bulldozer := false
+var bulldozer_health = 15
+var bulldozer_speed = 7500
+var bulldozer_wait = 5
+var old_health 
+var old_speed 
+
 # MOBS
 
 # mob1; we can rename the mob and the variables after we have better designs
@@ -77,4 +86,4 @@ var level3
 var change_level = true
 var level_status
 
-@export var health := 100
+

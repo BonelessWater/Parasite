@@ -28,7 +28,7 @@ var Shotgun
 var Rifle
 
 # Ability inventory
-var abilities := {'Dash': false, 'AOE': false, 'Bubble': false, 'Ram': false}
+var abilities := {'Dash': false, 'AOE': false, 'Bubble': false, 'Ram': false, 'Bulldozer': false}
 var Dash
 var AOE
 var Bubble
@@ -68,13 +68,8 @@ func _process(_delta): # use this function to refresh values
 	if Global.give_bubble_health:
 		get_node('HealthComponent').damage(-Global.bubble_health)
 		Global.give_bubble_health = false
-		
-func damage(attack_damage, _knockback):
-	health -= attack_damage
-	if health <= 0:
-		queue_free()
 	
-	taking_damage = true
+		
 
 func input(delta):
 	if Input.is_action_pressed('attack'):
@@ -86,13 +81,21 @@ func input(delta):
 			Global.weapon_name = 'Shotgun'
 			Shotgun.use(delta)
 		# Add more weapons
-	
+		
+	if Global.is_bulldozer and Input.is_action_just_pressed("e"):
+		Global.old_health = Global.max_health
+		
+		get_node('HealthComponent').damage(-Global.bulldozer_health)
+		movement_speed += Global.bulldozer_speed
+		
 	if Input.is_action_pressed('e'):
 		# Check if user has bubble...  this logic will change later 
-		if abilities['Bubble'] == true:
+		if Global.abilities['Bubble'] == true:
 			Global.bubble_on = true
-		if abilities['Ram'] == true:
+		if Global.abilities['Ram'] == true:
 			Global.is_ramming = true
+		if Global.abilities['Bulldozer'] == true:
+			Global.is_bulldozer = true
 			
 	if Input.is_action_just_pressed("skill_tree"):
 		get_tree().change_scene_to_file("res://scene/skill_tree.tscn")
