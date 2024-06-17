@@ -162,3 +162,9 @@ script = SubResource("GDScript_1drjg")
 script = ExtResource("9_uigsk")
 
 [node name="Duration" type="Timer" parent="Abilities/Bulldozer"]
+autostart = true
+
+[node name="Cooldown" type="Timer" parent="Abilities/Bulldozer"]
+autostart = true
+
+[connection signal="timeout" from="Abilities/Bulldozer/Duration" to="Abilities/Bulldozer" method="_on_duration_timeout"]

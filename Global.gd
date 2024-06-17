@@ -69,6 +69,7 @@ var bulldozer_speed = 7500
 var bulldozer_wait = 5
 var old_health 
 var old_speed 
+var bulldozer_cooldown = 15
 
 # MOBS
 

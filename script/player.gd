@@ -84,7 +84,9 @@ func input(delta):
 		
 	if Global.is_bulldozer and Input.is_action_just_pressed("e"):
 		Global.old_health = Global.max_health
-		
+		Global.old_speed = Global.movement_speed
+		print(Global.old_health)
+		print(Global.old_speed)
 		get_node('HealthComponent').damage(-Global.bulldozer_health)
 		movement_speed += Global.bulldozer_speed
 		

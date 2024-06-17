@@ -25,4 +25,4 @@ func damage(attack_damage, knockback=0, knockback_dir=Vector2(0,0)):
 	
 func _process(delta):
 	Global.old_health = health
-	print(Global.old_health)
+	
