@@ -43,7 +43,6 @@ func _ready():
 	game_node = get_parent().get_parent()
 	
 	health = Global.max_health
-	movement_speed = Global.movement_speed
 	max_health = Global.max_health
 	max_sprint = Global.max_sprint
 	stamina = Global.stamina
@@ -88,7 +87,7 @@ func input(delta):
 		print(Global.old_health)
 		print(Global.old_speed)
 		get_node('HealthComponent').damage(-Global.bulldozer_health)
-		movement_speed += Global.bulldozer_speed
+		Global.movement_speed += Global.bulldozer_speed
 		
 	if Input.is_action_pressed('e'):
 		# Check if user has bubble...  this logic will change later 
@@ -123,7 +122,7 @@ func movement(delta):
 		sprint = 1
 
 	# Direction player wants to go
-	var wanted_velocity = Vector2(directionx, directiony) * movement_speed * delta * sprint * Global.dash_speed
+	var wanted_velocity = Vector2(directionx, directiony) * Global.movement_speed * delta * sprint * Global.dash_speed
 	if wanted_velocity:
 		Global.last_vel = wanted_velocity
 	var velocity_delta = velocity - wanted_velocity

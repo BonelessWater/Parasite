@@ -73,8 +73,8 @@ var bulldozer_cooldown := 15
 
 #Slowtime
 var slow_time := false
-var player_speed_multiplier := 4
-var player_speed_mobs :=2
+var player_speed_multiplier := 2
+var player_speed_mobs :=4
 # MOBS
 
 # mob1; we can rename the mob and the variables after we have better designs

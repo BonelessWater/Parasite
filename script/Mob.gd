@@ -22,7 +22,7 @@ func _ready():
 	
 func _physics_process(delta):
 	if follow:
-		wanted_velocity = (get_parent().get_node('Player').position - position).normalized() * speed * delta
+		wanted_velocity = (get_parent().get_node('Player').position - position).normalized() * Global.mob1_speed * delta
 		velocity_delta = velocity - wanted_velocity
 
 		velocity -= velocity_delta * 0.1 # make this number larger to make the mob always follow the straighest path to the player 
