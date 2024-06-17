@@ -98,6 +98,8 @@ func input(delta):
 			Global.is_ramming = true
 		if Global.abilities['Bulldozer'] == true:
 			Global.is_bulldozer = true
+		if Global.abilities['SlowTime'] == true:
+			Global.slow_time = true
 			
 	if Input.is_action_just_pressed("skill_tree"):
 		get_tree().change_scene_to_file("res://scene/skill_tree.tscn")
