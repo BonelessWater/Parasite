@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dfr36sejdm04d"]
+[gd_scene load_steps=20 format=3 uid="uid://dfr36sejdm04d"]
 
 [ext_resource type="Script" path="res://script/Levels/Tutorial.gd" id="1_f2v8q"]
 [ext_resource type="Texture2D" uid="uid://b1pivas10ax32" path="res://assets/TileSet v1.0.png" id="2_rqo6p"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://h1bff3qrl3b8" path="res://scene/Abilities/bulldozer.tscn" id="13_am48w"]
 [ext_resource type="PackedScene" uid="uid://cbwvctwna0w6a" path="res://scene/AbilityDrops/slowtime.tscn" id="14_lr5a4"]
 [ext_resource type="PackedScene" uid="uid://cule1oc6eq53d" path="res://scene/AbilityDrops/emp.tscn" id="15_uhuax"]
+[ext_resource type="PackedScene" uid="uid://btyph4tgc4cdf" path="res://scene/AbilityDrops/totem_of_undying.tscn" id="16_tf1ik"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qw33d"]
 texture = ExtResource("2_rqo6p")
@@ -496,3 +497,6 @@ position = Vector2(284, 461)
 
 [node name="emp" parent="." instance=ExtResource("15_uhuax")]
 position = Vector2(336, 457)
+
+[node name="totem of undying" parent="." instance=ExtResource("16_tf1ik")]
+position = Vector2(391, 463)

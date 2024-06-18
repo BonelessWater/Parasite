@@ -19,7 +19,11 @@ func damage(attack_damage, knockback=0, knockback_dir=Vector2(0,0)):
 		get_node('HealthBar').scale.x -= attack_damage/health
 		get_parent().velocity += knockback * knockback_dir
 		
-	if health <= 0:
+	if health <= 0 and Global.totem_active:
+		Global.max_health = Global.totem_health
+		Global.consumable_amount_totem -=1
+		
+	elif health<=0: 
 		get_parent().queue_free()
 		
 	

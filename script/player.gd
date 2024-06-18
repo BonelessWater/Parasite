@@ -95,6 +95,9 @@ func input(delta):
 	if Global.emp_throw and Input.is_action_just_pressed("e"):
 		Global.mob1_speed = Global.emp_stun
 		
+	if Global.consumables['totem'] == true:
+		Global.totem_active = true
+		
 	if Input.is_action_pressed('e'):
 		# Check if user has bubble...  this logic will change later 
 		if Global.abilities['Bubble'] == true:

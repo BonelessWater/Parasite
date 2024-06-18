@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://btyph4tgc4cdf"]
+
+[ext_resource type="Script" path="res://totem of undying.gd" id="1_a2evk"]
+[ext_resource type="Texture2D" uid="uid://y53yh04tjglu" path="res://assets/items/gold_02.png" id="2_3ourg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pgygs"]
+
+[node name="totem of undying" type="Node2D"]
+script = ExtResource("1_a2evk")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_3ourg")
+
+[node name="Area2D" type="Area2D" parent="Sprite2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D"]
+shape = SubResource("RectangleShape2D_pgygs")
+
+[connection signal="body_entered" from="Sprite2D/Area2D" to="." method="_on_area_2d_body_entered"]

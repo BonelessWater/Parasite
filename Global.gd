@@ -87,6 +87,15 @@ var emp_cooldown := 10
 var emp_duration := 3
 var emp_throw = false
 
+#consumables
+var consumables:=  {'totem': false, 'regen': false}
+var consumable_amount_totem = 0 
+var consumable_amount_regen 
+
+#totem
+var totem_active = false
+var totem_health = 60
+
 
 # MOBS
 
