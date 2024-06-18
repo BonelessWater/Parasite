@@ -89,6 +89,10 @@ func input(delta):
 		get_node('HealthComponent').damage(-Global.bulldozer_health)
 		Global.movement_speed += Global.bulldozer_speed
 		
+	if Global.THEWORLD and Input.is_action_just_pressed("e"):
+		Global.movement_speed /= Global.player_speed_multiplier
+		Global.mob1_speed /= Global.player_speed_mobs
+		
 	if Input.is_action_pressed('e'):
 		# Check if user has bubble...  this logic will change later 
 		if Global.abilities['Bubble'] == true:
