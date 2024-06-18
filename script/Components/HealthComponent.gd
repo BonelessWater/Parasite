@@ -23,6 +23,6 @@ func damage(attack_damage, knockback=0, knockback_dir=Vector2(0,0)):
 		get_parent().queue_free()
 		
 	
-func _process(delta):
+func _process(_delta):
 	Global.old_health = health
 	

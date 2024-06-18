@@ -92,6 +92,8 @@ func input(delta):
 	if Global.THEWORLD and Input.is_action_just_pressed("e"):
 		Global.movement_speed /= Global.player_speed_multiplier
 		Global.mob1_speed /= Global.player_speed_mobs
+	if Global.emp_throw and Input.is_action_just_pressed("e"):
+		Global.mob1_speed = Global.emp_stun
 		
 	if Input.is_action_pressed('e'):
 		# Check if user has bubble...  this logic will change later 
@@ -103,6 +105,8 @@ func input(delta):
 			Global.is_bulldozer = true
 		if Global.abilities['SlowTime'] == true:
 			Global.slow_time = true
+		if Global.abilities['Emp'] == true:
+			Global.emp_active = true
 			
 	if Input.is_action_just_pressed("skill_tree"):
 		get_tree().change_scene_to_file("res://scene/skill_tree.tscn")

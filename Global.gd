@@ -36,8 +36,9 @@ var set_gun_timer := false
 
 
 
-# abilities
-var abilities := {'Dash': false, 'AOE': false, 'Bubble': false, 'Ram': false, 'Bulldozer': false, 'SlowTime': false}
+# abiabilities
+var abilities := {'Dash': false, 'AOE': false, 'Bubble': false, 'Ram': false, 'Bulldozer': false, 'SlowTime': false, 
+'Emp': false}
 # dash
 var is_dashing := false
 @export var max_dash_speed := 40.0
@@ -78,6 +79,15 @@ var player_speed_mobs :=4
 var slow_time_duration := 5
 var slow_time_cooldown := 15
 var THEWORLD := false
+
+#emp
+var emp_active :=false
+var emp_stun := 0
+var emp_cooldown := 10
+var emp_duration := 3
+var emp_throw = false
+
+
 # MOBS
 
 # mob1; we can rename the mob and the variables after we have better designs

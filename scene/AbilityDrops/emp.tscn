@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://cule1oc6eq53d"]
+
+[ext_resource type="Script" path="res://emp.gd" id="1_llkoe"]
+[ext_resource type="Texture2D" uid="uid://b5b8s5u53chde" path="res://assets/items/bomb_02.png" id="2_jomll"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_50kyf"]
+
+[node name="emp" type="Node2D"]
+script = ExtResource("1_llkoe")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_jomll")
+
+[node name="Area2D" type="Area2D" parent="Sprite2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D"]
+shape = SubResource("RectangleShape2D_50kyf")
+
+[connection signal="body_entered" from="Sprite2D/Area2D" to="." method="_on_area_2d_body_entered"]
