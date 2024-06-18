@@ -21,3 +21,4 @@ func _process(delta):
 	if begin_process:
 		player.movement(delta)
 		player.input(delta)
+		

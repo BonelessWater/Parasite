@@ -94,7 +94,8 @@ var consumable_amount_regen
 
 #totem
 var totem_active = false
-var totem_health = 60
+var totem_health = 100
+var totem := false
 
 
 # MOBS

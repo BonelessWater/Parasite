@@ -94,6 +94,8 @@ func input(delta):
 		Global.mob1_speed /= Global.player_speed_mobs
 	if Global.emp_throw and Input.is_action_just_pressed("e"):
 		Global.mob1_speed = Global.emp_stun
+	if Global.totem_active and Input.is_action_just_pressed("consume"):
+		Global.totem = true
 		
 	if Global.consumables['totem'] == true:
 		Global.totem_active = true
