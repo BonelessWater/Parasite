@@ -79,7 +79,7 @@ var player_speed_multiplier := 4
 var player_speed_mobs :=4
 var slow_time_duration := 5
 var slow_time_cooldown := 15
-var THEWORLD := false
+
 
 #emp
 var emp_active :=false

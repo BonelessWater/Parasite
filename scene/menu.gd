@@ -3,6 +3,7 @@ extends Control
 
 var levels_scene = preload("res://scene/levels.tscn").instantiate()
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
