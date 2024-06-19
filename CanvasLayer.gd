@@ -4,15 +4,13 @@ extends CanvasLayer
 var menu_active = true
 
 var game_scene = preload("res://scene/game.tscn")
-
+var event = false
 func _ready():
 	# Initially hide the menu
 	hide()
 	
 	# Connect buttons to their functions
-	$MenuControl/ResumeButton.callable("pressed", self, "_on_ResumeButton_pressed")
-	$MenuControl/OptionsButton.callable("pressed", self, "_on_OptionsButton_pressed")
-	$MenuControl/ExitButton.callable("pressed", self, "_on_ExitButton_pressed")
+	
 
 # Function to toggle the menu
 func toggle_menu():
