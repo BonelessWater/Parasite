@@ -5,25 +5,30 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	cooldown.set_wait_time(Global.slow_time_cooldown)
-	cooldown.one_shot = true
-	duration.set_wait_time(Global.slow_time_duration)
+	if Global.slow_time == true:
+		cooldown.set_wait_time(Global.slow_time_cooldown)
+		cooldown.one_shot = true
+		duration.set_wait_time(Global.slow_time_duration)
+		$cooldown.start()
 	
 	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if Global.THEWORLD and Input.is_action_just_pressed("e"):
+	if  Global.abilities['SlowTime'] == true and Input.is_action_just_pressed("e"):
 		$Duration.start()
-
+	
 func _on_cooldown_timeout():
-	Global.THEWORLD = true
+	Global.abilities['SlowTime'] = true
+
 	print("use ability")
+	print(Global.abilities['SlowTime'])
 		
 
 func _on_duration_timeout():
-	Global.THEWORLD = false
+	Global.abilities['SlowTime'] = false
+	print(Global.abilities['SlowTime'])
 	$Cooldown.one_shot = false
 	$Cooldown.start()
 	Global.movement_speed = 30000.0

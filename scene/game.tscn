@@ -175,8 +175,6 @@ script = ExtResource("10_w3mor")
 one_shot = true
 
 [node name="Cooldown" type="Timer" parent="Abilities/SlowTime"]
-one_shot = true
-autostart = true
 
 [node name="Emp Grenade" type="Node2D" parent="."]
 script = ExtResource("11_v4hig")
@@ -184,12 +182,12 @@ script = ExtResource("11_v4hig")
 [node name="duration" type="Timer" parent="Emp Grenade"]
 
 [node name="cooldown" type="Timer" parent="Emp Grenade"]
-autostart = true
 
 [node name="Totem" type="Node2D" parent="."]
 script = ExtResource("12_0epns")
 
 [connection signal="timeout" from="Abilities/Bulldozer/Duration" to="Abilities/Bulldozer" method="_on_duration_timeout"]
+[connection signal="timeout" from="Abilities/Bulldozer/Cooldown" to="Abilities/Bulldozer" method="_on_cooldown_timeout"]
 [connection signal="timeout" from="Abilities/SlowTime/Duration" to="Abilities/SlowTime" method="_on_duration_timeout"]
 [connection signal="timeout" from="Abilities/SlowTime/Cooldown" to="Abilities/SlowTime" method="_on_cooldown_timeout"]
 [connection signal="timeout" from="Emp Grenade/duration" to="Emp Grenade" method="_on_duration_timeout"]

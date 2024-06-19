@@ -81,7 +81,7 @@ func input(delta):
 			Shotgun.use(delta)
 		# Add more weapons
 		
-	if Global.is_bulldozer and Input.is_action_just_pressed("e"):
+	if Global.reinhartd and Input.is_action_just_pressed("e"):
 		Global.old_health = Global.max_health
 		Global.old_speed = Global.movement_speed
 		print(Global.old_health)
@@ -89,10 +89,10 @@ func input(delta):
 		get_node('HealthComponent').damage(-Global.bulldozer_health)
 		Global.movement_speed += Global.bulldozer_speed
 		
-	if Global.THEWORLD and Input.is_action_just_pressed("e"):
+	if Global.abilities['SlowTime'] == true and Input.is_action_just_pressed("e"):
 		Global.movement_speed /= Global.player_speed_multiplier
 		Global.mob1_speed /= Global.player_speed_mobs
-	if Global.emp_throw and Input.is_action_just_pressed("e"):
+	if Global.abilities['Emp'] and Input.is_action_just_pressed("e"):
 		Global.mob1_speed = Global.emp_stun
 	if Global.totem_active and Input.is_action_just_pressed("consume"):
 		Global.totem = true

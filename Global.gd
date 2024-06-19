@@ -71,6 +71,7 @@ var bulldozer_wait := 5
 var old_health 
 var old_speed 
 var bulldozer_cooldown := 15
+var reinhartd := false
 
 #Slowtime
 var slow_time := false

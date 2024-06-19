@@ -4,25 +4,26 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	Duration.set_wait_time(Global.bulldozer_wait)
-	Duration.set_one_shot(true)
-	
-	cooldown.set_wait_time(Global.bulldozer_cooldown)
-	cooldown.set_one_shot(true)
+		Duration.set_wait_time(Global.bulldozer_wait)
+		cooldown.set_wait_time(Global.bulldozer_cooldown)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	if Global.is_bulldozer == true and cooldown.time_left <= 0.05: 
+	if Global.reinhartd and Input.is_action_just_pressed("e"):
 		Duration.start()
+		
+	if Global.is_bulldozer:
+		cooldown.set_one_shot(true)
 		cooldown.start()
-		Global.is_bulldozer = false
 		
-		
-	if Duration.time_left <= 0.10:
-		Global.max_health == Global.old_health
-	
-
 func _on_duration_timeout():
+	$Cooldown.one_shot = false
+	$cooldown.start()
 	Global.max_health = Global.old_health
-	
-	Global.is_bulldozer = false
+	Global.movement_speed = Global.old_speed
+	Global.reinhartd = false
+
+
+func _on_cooldown_timeout():
+	Global.reinhartd = true
+	print("use ability")
