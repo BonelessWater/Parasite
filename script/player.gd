@@ -157,9 +157,9 @@ func look_dir(directionx, directiony):
 	elif directionx < 0:
 		curr_direction = 'left'
 	elif directiony < 0:
-		curr_direction = 'forward'
-	else:
 		curr_direction = 'back'
+	elif directiony > 0:
+		curr_direction = 'forward'
 	
 	if directionx != 0:
 		ani.play('side_walk')
@@ -173,14 +173,14 @@ func look_dir(directionx, directiony):
 		ani.play('forward_walk')
 	else:
 		if curr_direction == 'left':
-			$AnimatedSprite2D.flip_h = false
+			$AnimatedSprite2D.flip_h = true
 			ani.play('side')
 		elif curr_direction == 'right':
-			$AnimatedSprite2D.flip_h = true
+			$AnimatedSprite2D.flip_h = false
 			ani.play('side')
 		elif curr_direction == 'back':
 			ani.play('back')
-		else:
+		elif curr_direction == 'forward':
 			ani.play('forward')
 
 # Identifier function

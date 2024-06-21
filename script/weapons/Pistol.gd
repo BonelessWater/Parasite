@@ -84,9 +84,9 @@ func use(_delta):
 					aim_angle = 0 + bullet_offset
 				'left':
 					aim_angle = PI + bullet_offset 
-				'back':
-					aim_angle = PI/2 + bullet_offset
 				'forward':
+					aim_angle = PI/2 + bullet_offset
+				'back':
 					aim_angle = PI * 3/2 + bullet_offset
 			var aim := Vector2(cos(aim_angle), sin(aim_angle))
 			bullet.position = player.position + aim * bullet_spawn_from_player
