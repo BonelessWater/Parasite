@@ -156,10 +156,10 @@ func look_dir(directionx, directiony):
 		curr_direction = 'right'
 	elif directionx < 0:
 		curr_direction = 'left'
-	elif directionx < 0:
-		curr_direction = 'up'
+	elif directiony < 0:
+		curr_direction = 'forward'
 	else:
-		curr_direction = 'down'
+		curr_direction = 'back'
 	
 	if directionx != 0:
 		ani.play('side_walk')
