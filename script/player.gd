@@ -22,13 +22,11 @@ var distance_to_next_level := 0
 # Weapon inventory
 var weaponInHand := false
 
-var weapons := {'Pistol': false, 'Shotgun': false, 'Rifle': false}
 var Pistol
 var Shotgun
 var Rifle
 
 # Ability inventory
-var abilities := {'Dash': false, 'AOE': false, 'Bubble': false, 'Ram': false, 'Bulldozer': false}
 var Dash
 var AOE
 var Bubble
@@ -67,16 +65,14 @@ func _process(_delta): # use this function to refresh values
 	if Global.give_bubble_health:
 		get_node('HealthComponent').damage(-Global.bubble_health)
 		Global.give_bubble_health = false
-	
-		
 
 func input(delta):
 	if Input.is_action_pressed('attack'):
 		# Check if user collected pistol
-		if weapons['Pistol'] == true:
+		if Global.weapons['Pistol'] == true:
 			Global.weapon_name = 'Pistol'
 			Pistol.use(delta)
-		if weapons['Shotgun'] == true:
+		if Global.weapons['Shotgun'] == true:
 			Global.weapon_name = 'Shotgun'
 			Shotgun.use(delta)
 		# Add more weapons
@@ -84,8 +80,6 @@ func input(delta):
 	if Global.reinhartd and Input.is_action_just_pressed("e"):
 		Global.old_health = Global.max_health
 		Global.old_speed = Global.movement_speed
-		print(Global.old_health)
-		print(Global.old_speed)
 		get_node('HealthComponent').damage(-Global.bulldozer_health)
 		Global.movement_speed += Global.bulldozer_speed
 		
@@ -100,7 +94,7 @@ func input(delta):
 	if Global.consumables['totem'] == true:
 		Global.totem_active = true
 		
-	if Input.is_action_pressed('e'):
+	if Input.is_action_just_pressed('e'):
 		# Check if user has bubble...  this logic will change later 
 		if Global.abilities['Bubble'] == true:
 			Global.bubble_on = true
@@ -119,7 +113,7 @@ func input(delta):
 func movement(delta):
 	if Input.is_action_just_pressed('space'):
 		# Check if user collected dash
-		if abilities['Dash'] == true:
+		if Global.abilities['Dash'] == true:
 			Global.is_dashing = true
 	
 	var directionx = Input.get_axis("move_left", "move_right")

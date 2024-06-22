@@ -5,17 +5,17 @@
 [ext_resource type="Texture2D" uid="uid://bxv21jmc1mdkw" path="res://assets/seemlessbackground.png" id="3_cgdmh"]
 [ext_resource type="Script" path="res://scene/Levels/TileMap.gd" id="3_k641l"]
 [ext_resource type="PackedScene" uid="uid://bfwllfb0u0ios" path="res://scene/AbilityDrops/Dash.tscn" id="3_u1ihy"]
-[ext_resource type="PackedScene" uid="uid://cto7cgpyhq87d" path="res://scene/mob.tscn" id="3_wro1i"]
 [ext_resource type="FontFile" uid="uid://d4i8qyyt0eo38" path="res://assets/fonts.webp" id="5_yoisl"]
 [ext_resource type="AudioStream" uid="uid://c2w8jjw3hugdh" path="res://assets/audio/emulation_of_game.wav" id="6_lfhgy"]
 [ext_resource type="PackedScene" uid="uid://bbrgmvfixhwlq" path="res://scene/AbilityDrops/Ram.tscn" id="6_vacy8"]
 [ext_resource type="PackedScene" uid="uid://eopj331k416a" path="res://scene/WeaponDrops/weapon.tscn" id="7_qmbxl"]
-[ext_resource type="PackedScene" uid="uid://db6d61i8omd24" path="res://scene/door.tscn" id="9_igare"]
-[ext_resource type="PackedScene" uid="uid://ljyyn0jvnj1q" path="res://scene/key.tscn" id="10_5bju0"]
-[ext_resource type="PackedScene" uid="uid://h1bff3qrl3b8" path="res://scene/Abilities/bulldozer.tscn" id="13_am48w"]
-[ext_resource type="PackedScene" uid="uid://cbwvctwna0w6a" path="res://scene/AbilityDrops/slowtime.tscn" id="14_lr5a4"]
-[ext_resource type="PackedScene" uid="uid://cule1oc6eq53d" path="res://scene/AbilityDrops/emp.tscn" id="15_uhuax"]
-[ext_resource type="PackedScene" uid="uid://btyph4tgc4cdf" path="res://scene/AbilityDrops/totem_of_undying.tscn" id="16_tf1ik"]
+[ext_resource type="PackedScene" uid="uid://cto7cgpyhq87d" path="res://scene/Entities/mob.tscn" id="9_31204"]
+[ext_resource type="PackedScene" uid="uid://db6d61i8omd24" path="res://scene/Objects/door.tscn" id="10_ngiqn"]
+[ext_resource type="PackedScene" uid="uid://ljyyn0jvnj1q" path="res://scene/Objects/key.tscn" id="11_cml80"]
+[ext_resource type="PackedScene" uid="uid://h1bff3qrl3b8" path="res://scene/AbilityDrops/Bulldozer.tscn" id="13_2rbtj"]
+[ext_resource type="PackedScene" uid="uid://cbwvctwna0w6a" path="res://scene/AbilityDrops/Slowtime.tscn" id="14_u674h"]
+[ext_resource type="PackedScene" uid="uid://cule1oc6eq53d" path="res://scene/AbilityDrops/EMP.tscn" id="16_77qwm"]
+[ext_resource type="PackedScene" uid="uid://btyph4tgc4cdf" path="res://scene/AbilityDrops/Totem.tscn" id="17_40crk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qw33d"]
 texture = ExtResource("2_rqo6p")
@@ -377,9 +377,6 @@ script = ExtResource("3_k641l")
 [node name="Dash" parent="." instance=ExtResource("3_u1ihy")]
 position = Vector2(155, 453)
 
-[node name="Ram" parent="." instance=ExtResource("6_vacy8")]
-position = Vector2(223, 455)
-
 [node name="Pistol" parent="." instance=ExtResource("7_qmbxl")]
 position = Vector2(327, 72)
 
@@ -439,64 +436,67 @@ text = "Dash away if they get to your head."
 stream = ExtResource("6_lfhgy")
 script = SubResource("GDScript_kdnel")
 
-[node name="Mob" parent="." instance=ExtResource("3_wro1i")]
+[node name="Mob" parent="." instance=ExtResource("9_31204")]
 position = Vector2(2337, 225)
 motion_mode = 1
 
 [node name="Doors" type="Node2D" parent="."]
 position = Vector2(814, 272)
 
-[node name="Door1-2" parent="Doors" instance=ExtResource("9_igare")]
+[node name="Door1-2" parent="Doors" instance=ExtResource("10_ngiqn")]
 
-[node name="Door2-1" parent="Doors" instance=ExtResource("9_igare")]
+[node name="Door2-1" parent="Doors" instance=ExtResource("10_ngiqn")]
 position = Vector2(1020, 7)
 direction = "left"
 
-[node name="Door2-3" parent="Doors" instance=ExtResource("9_igare")]
+[node name="Door2-3" parent="Doors" instance=ExtResource("10_ngiqn")]
 position = Vector2(1431, -235)
 direction = "up"
 
-[node name="Door3-2" parent="Doors" instance=ExtResource("9_igare")]
+[node name="Door3-2" parent="Doors" instance=ExtResource("10_ngiqn")]
 position = Vector2(1432, -825)
 direction = "down"
 
-[node name="Door3-4" parent="Doors" instance=ExtResource("9_igare")]
+[node name="Door3-4" parent="Doors" instance=ExtResource("10_ngiqn")]
 position = Vector2(1827, -1075)
 
-[node name="Door4-3" parent="Doors" instance=ExtResource("9_igare")]
+[node name="Door4-3" parent="Doors" instance=ExtResource("10_ngiqn")]
 position = Vector2(2853, -1077)
 direction = "left"
 
-[node name="Door4-5" parent="Doors" instance=ExtResource("9_igare")]
+[node name="Door4-5" parent="Doors" instance=ExtResource("10_ngiqn")]
 position = Vector2(3260, -802)
 direction = "down"
 
-[node name="Door5-4" parent="Doors" instance=ExtResource("9_igare")]
+[node name="Door5-4" parent="Doors" instance=ExtResource("10_ngiqn")]
 position = Vector2(3253, -224)
 direction = "up"
 
-[node name="Door5-6" parent="Doors" instance=ExtResource("9_igare")]
+[node name="Door5-6" parent="Doors" instance=ExtResource("10_ngiqn")]
 position = Vector2(3255, 243)
 direction = "down"
 
-[node name="Door6-5" parent="Doors" instance=ExtResource("9_igare")]
+[node name="Door6-5" parent="Doors" instance=ExtResource("10_ngiqn")]
 position = Vector2(3318, 806)
 direction = "up"
 
 [node name="Key" type="Node2D" parent="."]
 position = Vector2(697, 249)
 
-[node name="key" parent="Key" instance=ExtResource("10_5bju0")]
+[node name="key" parent="Key" instance=ExtResource("11_cml80")]
 position = Vector2(1, 0)
 
-[node name="Bulldozer" parent="." instance=ExtResource("13_am48w")]
+[node name="Ram" parent="." instance=ExtResource("6_vacy8")]
+position = Vector2(223, 455)
+
+[node name="Bulldozer" parent="." instance=ExtResource("13_2rbtj")]
 position = Vector2(96, 449)
 
-[node name="slowtime" parent="." instance=ExtResource("14_lr5a4")]
+[node name="Slowtime" parent="." instance=ExtResource("14_u674h")]
 position = Vector2(284, 461)
 
-[node name="emp" parent="." instance=ExtResource("15_uhuax")]
+[node name="EMP" parent="." instance=ExtResource("16_77qwm")]
 position = Vector2(336, 457)
 
-[node name="totem of undying" parent="." instance=ExtResource("16_tf1ik")]
+[node name="Totem" parent="." instance=ExtResource("17_40crk")]
 position = Vector2(391, 463)

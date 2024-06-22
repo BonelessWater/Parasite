@@ -15,7 +15,9 @@ var door_col
 
 # WEAPONS
 var weapon_name
+var weapons = {'Pistol': false, 'Shotgun': false, 'Rifle': false}
 var set_gun_timer := false
+
 # pistol
 @export var pistol_damage := 10.0
 @export var pistol_firerate := 0.1
@@ -30,10 +32,8 @@ var set_gun_timer := false
 @export var shotgun_speed := 500.0
 @export var shotgun_knockback := 10.0
 
-@export var shotgun_spread_angle := PI/5 
+@export var shotgun_spread_angle := PI/15
 @export var shotgun_num_bullets := 3
-
-
 
 
 # abiabilities
@@ -62,7 +62,6 @@ var ram_vel
 @export var ram_cooldown := 1
 @export var ram_knockback := 50
 
-
 #bulldozer
 var is_bulldozer := false
 var bulldozer_health := 15
@@ -86,16 +85,16 @@ var emp_active :=false
 var emp_stun := 0
 var emp_cooldown := 10
 var emp_duration := 3
-var emp_throw = false
+var emp_throw := false
 
 #consumables
-var consumables:=  {'totem': false, 'regen': false}
-var consumable_amount_totem = 0 
+var consumables :=  {'totem': false, 'regen': false}
+var consumable_amount_totem := 0 
 var consumable_amount_regen 
 
 #totem
-var totem_active = false
-var totem_health = 100
+var totem_active := false
+var totem_health := 100
 var totem := false
 
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://dep68r1uesyij"]
 
-[ext_resource type="PackedScene" uid="uid://t84u8tt4oxer" path="res://scene/skill.tscn" id="1_gprxj"]
+[ext_resource type="PackedScene" uid="uid://t84u8tt4oxer" path="res://scene/UI/skill.tscn" id="1_gprxj"]
 [ext_resource type="Texture2D" uid="uid://bo14epqb0tqb4" path="res://assets/items/bomb_01.png" id="2_vay3u"]
 [ext_resource type="Texture2D" uid="uid://b5b8s5u53chde" path="res://assets/items/bomb_02.png" id="3_jc4xi"]
 [ext_resource type="Texture2D" uid="uid://b7agyb2eafi82" path="res://assets/items/potion_01.png" id="4_5o281"]

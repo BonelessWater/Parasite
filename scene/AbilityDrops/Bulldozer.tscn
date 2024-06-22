@@ -1,13 +1,14 @@
 [gd_scene load_steps=4 format=3 uid="uid://h1bff3qrl3b8"]
 
-[ext_resource type="Script" path="res://Bulldozer.gd" id="1_dnppy"]
+[ext_resource type="Script" path="res://scene/AbilityDrops/Drop.gd" id="1_kvrnt"]
 [ext_resource type="Texture2D" uid="uid://cs4v3ixwpxye8" path="res://assets/items/food_03.png" id="2_6b3pq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g6euh"]
 
 [node name="Bulldozer" type="Node2D"]
 position = Vector2(0, 2)
-script = ExtResource("1_dnppy")
+script = ExtResource("1_kvrnt")
+ability_name = "Bulldozer"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1

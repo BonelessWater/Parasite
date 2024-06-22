@@ -1,6 +1,6 @@
 extends Node2D
 
-var playerPath = preload('res://scene/player.tscn')
+var playerPath = preload('res://scene/Entities/player.tscn')
 var player 
 var player_pos 
 var begin_process = false

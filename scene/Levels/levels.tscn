@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://de7aj8ms2pnix"]
 
-[ext_resource type="Script" path="res://scene/levels.gd" id="1_ewnr4"]
+[ext_resource type="Script" path="res://scene/Levels/levels.gd" id="1_ewnr4"]
 [ext_resource type="Texture2D" uid="uid://bxv21jmc1mdkw" path="res://assets/seemlessbackground.png" id="1_x0lai"]
 
 [node name="Levels" type="Control"]

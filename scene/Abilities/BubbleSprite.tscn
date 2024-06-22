@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://t2s48gfghn3e" path="res://assets/buddie0 sprite sheet x1.png" id="1_7hs5b"]
 [ext_resource type="Texture2D" uid="uid://c0dw0y3rwvoyh" path="res://assets/items/stone_01.png" id="1_vhnng"]
-[ext_resource type="Script" path="res://scene/Abilities/Bubble.gd" id="3_4qfp2"]
+[ext_resource type="Script" path="res://script/abilities/Bubble.gd" id="3_r2m85"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nfceb"]
 atlas = ExtResource("1_7hs5b")
@@ -32,4 +32,4 @@ texture_filter = 1
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_6nocl")
 animation = &"on"
-script = ExtResource("3_4qfp2")
+script = ExtResource("3_r2m85")

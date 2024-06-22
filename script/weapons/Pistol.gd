@@ -1,7 +1,7 @@
 extends Node2D
 
 # Make an instance of weapon and remember to set the desired texture path
-const bulletPath = preload('res://scene/bullet.tscn')
+const bulletPath = preload('res://scene/Levels/bullet.tscn')
 
 var bullet_spawn_from_player := 25
 
