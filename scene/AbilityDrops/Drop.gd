@@ -16,7 +16,4 @@ func _on_area_2d_body_entered(body):
 			elif ability_name == 'Splashpot':
 				Global.consumables[ability_name] = true
 				Global.consumable_amount_splashpot += 1
-				print('splash')
-		
-		
 		queue_free()

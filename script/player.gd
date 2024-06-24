@@ -96,7 +96,6 @@ func input(delta):
 	
 	if Input.is_action_just_pressed('c'):
 		if Global.consumables['Splashpot'] == true and Global.consumable_amount_splashpot > 0:
-			print('consume')
 			get_node('HealthComponent').damage(-Global.splashpot_health)
 			Global.consumable_amount_splashpot -= 1
 	

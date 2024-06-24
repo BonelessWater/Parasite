@@ -6,8 +6,8 @@
 script = ExtResource("1_dtqu8")
 
 [node name="HealthBar" type="ColorRect" parent="."]
-offset_left = -19.0
-offset_top = -29.0
-offset_right = 19.0
-offset_bottom = -26.0
+offset_left = -20.0
+offset_top = -36.0
+offset_right = 20.0
+offset_bottom = -34.0
 color = Color(0, 1, 0, 1)
