@@ -88,14 +88,19 @@ func input(delta):
 		Global.mob1_speed /= Global.player_speed_mobs
 	if Global.abilities['Emp'] and Input.is_action_just_pressed("e"):
 		Global.mob1_speed = Global.emp_stun
-	if Global.totem_active and Input.is_action_just_pressed("consume"):
+	if Global.totem_active and Input.is_action_just_pressed("c"):
 		Global.totem = true
 		
 	if Global.consumables['totem'] == true:
 		Global.totem_active = true
-		
+	
+	if Input.is_action_just_pressed('c'):
+		if Global.consumables['Splashpot'] == true and Global.consumable_amount_splashpot > 0:
+			print('consume')
+			get_node('HealthComponent').damage(-Global.splashpot_health)
+			Global.consumable_amount_splashpot -= 1
+	
 	if Input.is_action_just_pressed('e'):
-		# Check if user has bubble...  this logic will change later 
 		if Global.abilities['Bubble'] == true:
 			Global.bubble_on = true
 		if Global.abilities['Ram'] == true:
@@ -106,6 +111,7 @@ func input(delta):
 			Global.slow_time = true
 		if Global.abilities['Emp'] == true:
 			Global.emp_active = true
+	
 			
 	if Input.is_action_just_pressed("skill_tree"):
 		get_tree().change_scene_to_file("res://scene/skill_tree.tscn")

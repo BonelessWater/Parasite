@@ -30,11 +30,16 @@ func _process(_delta):
 			timer.start()
 
 func _on_body_entered(body):
-	if body.has_method('player') or (body.has_method('mob') and Global.invul): # This if statement goes first to prevent errors when hitting walls
+	if body.has_method('player'): # to damage player
 		if body.get_node('HealthComponent').has_method('damage'): 
 			in_hitbox = true
 			entity = body # this is weird but confia
-	
+
+	if body.has_method('mob') and Global.invul == true: # to damage mob
+		if body.get_node('HealthComponent').has_method('damage'): 
+			in_hitbox = true
+			entity = body # this is weird but confia
+
 func _on_body_exited(body):
 	if body.has_method('player') or body.has_method('mob'): # This if statement goes first to prevent errors when hitting walls
 		if body.get_node('HealthComponent').has_method('damage'): 

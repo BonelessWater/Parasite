@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dfr36sejdm04d"]
+[gd_scene load_steps=22 format=3 uid="uid://dfr36sejdm04d"]
 
 [ext_resource type="Script" path="res://script/Levels/Tutorial.gd" id="1_f2v8q"]
 [ext_resource type="Texture2D" uid="uid://b1pivas10ax32" path="res://assets/TileSet v1.0.png" id="2_rqo6p"]
@@ -14,8 +14,10 @@
 [ext_resource type="PackedScene" uid="uid://ljyyn0jvnj1q" path="res://scene/Objects/key.tscn" id="11_cml80"]
 [ext_resource type="PackedScene" uid="uid://h1bff3qrl3b8" path="res://scene/AbilityDrops/Bulldozer.tscn" id="13_2rbtj"]
 [ext_resource type="PackedScene" uid="uid://cbwvctwna0w6a" path="res://scene/AbilityDrops/Slowtime.tscn" id="14_u674h"]
+[ext_resource type="PackedScene" uid="uid://bxo2xpg8otqyy" path="res://scene/AbilityDrops/Splashpot.tscn" id="15_mu2rj"]
 [ext_resource type="PackedScene" uid="uid://cule1oc6eq53d" path="res://scene/AbilityDrops/EMP.tscn" id="16_77qwm"]
 [ext_resource type="PackedScene" uid="uid://btyph4tgc4cdf" path="res://scene/AbilityDrops/Totem.tscn" id="17_40crk"]
+[ext_resource type="PackedScene" uid="uid://bhjaqid1i2x2s" path="res://scene/AbilityDrops/Bubble.tscn" id="17_n57cs"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qw33d"]
 texture = ExtResource("2_rqo6p")
@@ -308,7 +310,7 @@ script = ExtResource("1_f2v8q")
 motion_scale = Vector2(0.3, 0.3)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2(2338, 364)
+position = Vector2(2369, 359)
 scale = Vector2(12, 8.233)
 texture = ExtResource("3_cgdmh")
 
@@ -375,7 +377,7 @@ layer_0/tile_data = PackedInt32Array(1, 262144, 0, 2, 262144, 0, 3, 262144, 0, 4
 script = ExtResource("3_k641l")
 
 [node name="Dash" parent="." instance=ExtResource("3_u1ihy")]
-position = Vector2(155, 453)
+position = Vector2(290, 141)
 
 [node name="Pistol" parent="." instance=ExtResource("7_qmbxl")]
 position = Vector2(327, 72)
@@ -487,16 +489,23 @@ position = Vector2(697, 249)
 position = Vector2(1, 0)
 
 [node name="Ram" parent="." instance=ExtResource("6_vacy8")]
-position = Vector2(223, 455)
+position = Vector2(291, 388)
 
 [node name="Bulldozer" parent="." instance=ExtResource("13_2rbtj")]
-position = Vector2(96, 449)
+position = Vector2(98, 383)
 
 [node name="Slowtime" parent="." instance=ExtResource("14_u674h")]
-position = Vector2(284, 461)
+position = Vector2(385, 386)
+
+[node name="Splashpot" parent="." instance=ExtResource("15_mu2rj")]
+position = Vector2(152, 213)
+consumable = true
 
 [node name="EMP" parent="." instance=ExtResource("16_77qwm")]
-position = Vector2(336, 457)
+position = Vector2(481, 384)
 
 [node name="Totem" parent="." instance=ExtResource("17_40crk")]
-position = Vector2(391, 463)
+position = Vector2(577, 382)
+
+[node name="Bubble" parent="." instance=ExtResource("17_n57cs")]
+position = Vector2(673, 383)

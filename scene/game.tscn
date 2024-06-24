@@ -1,8 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://y5m717rfnc30"]
+[gd_scene load_steps=13 format=3 uid="uid://y5m717rfnc30"]
 
 [ext_resource type="Script" path="res://script/game.gd" id="1_gdixo"]
 [ext_resource type="PackedScene" uid="uid://dfr36sejdm04d" path="res://scene/Levels/tutorial.tscn" id="2_x3ken"]
-[ext_resource type="Script" path="res://script/Logic.gd" id="3_plwna"]
 [ext_resource type="Script" path="res://script/weapons/Pistol.gd" id="4_8cd2e"]
 [ext_resource type="Script" path="res://script/abilities/Dash.gd" id="5_3gdox"]
 [ext_resource type="Script" path="res://script/abilities/Ram.gd" id="5_b1spt"]
@@ -106,7 +105,6 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="Logic" type="Node2D" parent="."]
-script = ExtResource("3_plwna")
 
 [node name="Objects" type="Node2D" parent="."]
 
@@ -137,6 +135,8 @@ position = Vector2(30, 0)
 script = ExtResource("5_b1spt")
 
 [node name="Cooldown" type="Timer" parent="Abilities/Ram"]
+
+[node name="Duration" type="Timer" parent="Abilities/Ram"]
 
 [node name="Dash" type="Node2D" parent="Abilities"]
 script = ExtResource("5_3gdox")

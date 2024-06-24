@@ -1,19 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://bhjaqid1i2x2s"]
+[gd_scene load_steps=4 format=3 uid="uid://bxo2xpg8otqyy"]
 
-[ext_resource type="Script" path="res://scene/AbilityDrops/Drop.gd" id="1_uifhp"]
-[ext_resource type="Texture2D" uid="uid://cdhxykopehl34" path="res://assets/items/shroom_03.png" id="2_cyg21"]
+[ext_resource type="Script" path="res://scene/AbilityDrops/Drop.gd" id="1_vsbow"]
+[ext_resource type="Texture2D" uid="uid://b7agyb2eafi82" path="res://assets/items/potion_01.png" id="2_dehej"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2x0be"]
 radius = 17.1172
 
-[node name="Bubble" type="Node2D"]
+[node name="Splashpot" type="Node2D"]
 texture_filter = 1
-script = ExtResource("1_uifhp")
-ability_name = "Bubble"
+script = ExtResource("1_vsbow")
+ability_name = "Splashpot"
+consumable = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("2_cyg21")
+texture = ExtResource("2_dehej")
 
 [node name="Area2D" type="Area2D" parent="."]
 
