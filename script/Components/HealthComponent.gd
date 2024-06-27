@@ -21,9 +21,10 @@ func damage(attack_damage, knockback=0, knockback_dir=Vector2(0,0)):
 	if get_parent().has_method('player'):
 		if Global.invul == false:
 			Global.max_health -= attack_damage
-			get_node('HealthBar').scale.x -= attack_damage/max_health
+			
+			get_node('HealthBar').scale.x -= max_health
 			get_parent().velocity += knockback * knockback_dir
-			print(Global.max_health)
+			print("the max health is", Global.max_health)
 			
 		if Global.max_health <= 0 and Global.totem == true:
 			Global.max_health = Global.totem_health
@@ -43,4 +44,4 @@ func damage(attack_damage, knockback=0, knockback_dir=Vector2(0,0)):
 			get_parent().queue_free()
 		
 func _process(_delta):
-	Global.old_health = health
+	pass

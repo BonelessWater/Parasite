@@ -13,9 +13,9 @@
 [ext_resource type="PackedScene" uid="uid://db6d61i8omd24" path="res://scene/Objects/door.tscn" id="10_ngiqn"]
 [ext_resource type="PackedScene" uid="uid://ljyyn0jvnj1q" path="res://scene/Objects/key.tscn" id="11_cml80"]
 [ext_resource type="PackedScene" uid="uid://h1bff3qrl3b8" path="res://scene/AbilityDrops/Bulldozer.tscn" id="13_2rbtj"]
-[ext_resource type="PackedScene" uid="uid://cbwvctwna0w6a" path="res://scene/AbilityDrops/Slowtime.tscn" id="14_u674h"]
+[ext_resource type="PackedScene" uid="uid://cbwvctwna0w6a" path="res://scene/AbilityDrops/slowtime.tscn" id="14_u674h"]
 [ext_resource type="PackedScene" uid="uid://bxo2xpg8otqyy" path="res://scene/AbilityDrops/Splashpot.tscn" id="15_mu2rj"]
-[ext_resource type="PackedScene" uid="uid://cule1oc6eq53d" path="res://scene/AbilityDrops/EMP.tscn" id="16_77qwm"]
+[ext_resource type="PackedScene" uid="uid://cule1oc6eq53d" path="res://scene/AbilityDrops/emp.tscn" id="16_77qwm"]
 [ext_resource type="PackedScene" uid="uid://btyph4tgc4cdf" path="res://scene/AbilityDrops/Totem.tscn" id="17_40crk"]
 [ext_resource type="PackedScene" uid="uid://bhjaqid1i2x2s" path="res://scene/AbilityDrops/Bubble.tscn" id="17_n57cs"]
 
@@ -499,7 +499,6 @@ position = Vector2(385, 386)
 
 [node name="Splashpot" parent="." instance=ExtResource("15_mu2rj")]
 position = Vector2(152, 213)
-consumable = true
 
 [node name="EMP" parent="." instance=ExtResource("16_77qwm")]
 position = Vector2(481, 384)

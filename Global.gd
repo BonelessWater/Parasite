@@ -67,8 +67,8 @@ var is_bulldozer := false
 var bulldozer_health := 15
 var bulldozer_speed := 7500
 var bulldozer_wait := 5
-var old_health 
-var old_speed 
+var old_health := 50
+var old_speed : = 30000
 var bulldozer_cooldown := 15
 var reinhartd := false
 
