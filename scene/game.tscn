@@ -144,6 +144,7 @@ script = ExtResource("10_w3mor")
 one_shot = true
 
 [node name="Cooldown" type="Timer" parent="Abilities/SlowTime"]
+wait_time = 15.0
 
 [node name="Emp Grenade" type="Node2D" parent="."]
 script = ExtResource("11_v4hig")

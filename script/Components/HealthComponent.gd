@@ -22,7 +22,7 @@ func damage(attack_damage, knockback=0, knockback_dir=Vector2(0,0)):
 		if Global.invul == false:
 			Global.max_health -= attack_damage
 			
-			get_node('HealthBar').scale.x -= max_health
+			get_node('HealthBar').scale.x -= attack_damage/max_health
 			get_parent().velocity += knockback * knockback_dir
 			print("the max health is", Global.max_health)
 			
