@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://bfpbuf0afnum"]
+
+[ext_resource type="Script" path="res://desk_note.gd" id="1_lt47x"]
+[ext_resource type="Texture2D" uid="uid://b1pivas10ax32" path="res://assets/TileSet v1.0.png" id="2_pdgex"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_akmkc"]
+atlas = ExtResource("2_pdgex")
+region = Rect2(288, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bqexj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_akmkc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5a802"]
+size = Vector2(28, 27)
+
+[node name="desk_note" type="Node2D"]
+script = ExtResource("1_lt47x")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_bqexj")
+
+[node name="Area2D" type="Area2D" parent="Sprite2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D"]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_5a802")
+
+[connection signal="body_entered" from="Sprite2D/Area2D" to="." method="_on_area_2d_body_entered"]
