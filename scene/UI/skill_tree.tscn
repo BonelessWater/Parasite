@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://dep68r1uesyij"]
+[gd_scene load_steps=7 format=3 uid="uid://dep68r1uesyij"]
 
 [ext_resource type="PackedScene" uid="uid://t84u8tt4oxer" path="res://scene/UI/skill.tscn" id="1_gprxj"]
+[ext_resource type="Script" path="res://scene/UI/skill_tree.gd" id="1_ric3j"]
 [ext_resource type="Texture2D" uid="uid://bo14epqb0tqb4" path="res://assets/items/bomb_01.png" id="2_vay3u"]
 [ext_resource type="Texture2D" uid="uid://b5b8s5u53chde" path="res://assets/items/bomb_02.png" id="3_jc4xi"]
 [ext_resource type="Texture2D" uid="uid://b7agyb2eafi82" path="res://assets/items/potion_01.png" id="4_5o281"]
@@ -13,6 +14,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_ric3j")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
@@ -25,9 +27,9 @@ grow_vertical = 2
 [node name="Skill" parent="." instance=ExtResource("1_gprxj")]
 layout_mode = 0
 offset_left = 549.0
-offset_top = 533.0
+offset_top = 375.0
 offset_right = 589.0
-offset_bottom = 573.0
+offset_bottom = 415.0
 
 [node name="Skill2" parent="Skill" instance=ExtResource("1_gprxj")]
 layout_mode = 0
@@ -64,3 +66,17 @@ offset_right = -31.0
 offset_bottom = -34.0
 disabled = true
 texture_normal = ExtResource("5_gltho")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 527.0
+offset_top = 469.0
+offset_right = 602.0
+offset_bottom = 556.0
+alignment = 1
+
+[node name="Back" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Back"
+
+[connection signal="pressed" from="VBoxContainer/Back" to="." method="_on_back_pressed"]

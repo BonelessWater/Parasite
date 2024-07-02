@@ -17,7 +17,7 @@ var level : int = 0:
 		label.text = str(level) + '/3'
 
 func _on_pressed():
-	print(Global.health)
+	
 	level= min(level + 1,3)
 	panel.show_behind_parent = true
 	line2D.default_color = Color(1, 1, 0.61568629741669)
@@ -26,7 +26,7 @@ func _on_pressed():
 		if skill is SkillNode and level == 1:
 			skill.disabled = false
 	if level == 1:
-		Global.health = Global.health * 1.25
-	print(Global.health)
+		Global.max_health = Global.max_health * 1.25
+	
 
 	

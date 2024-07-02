@@ -1,10 +1,10 @@
 extends Node2D
-
+var skilltree = preload ("res://scene/UI/skill_tree.tscn").instantiate()
 var playerPath = preload('res://scene/Entities/player.tscn')
 var player 
 var player_pos 
 var begin_process = false
-
+var notes = preload("res://scene/Notes/note1.tscn").instantiate()
 func startup():
 	begin_process = true
 	# Makes player node in tutorial
@@ -22,3 +22,10 @@ func _process(delta):
 		player.movement(delta)
 		player.input(delta)
 		
+	if Input.is_action_just_pressed("skill_tree"):
+		get_tree().root.add_child(skilltree)
+		queue_free()
+		Global.level_status = 'tutorial'
+	if Input.is_action_just_pressed('notes'):
+		get_tree().root.add_child(notes)
+		queue_free()

@@ -107,6 +107,8 @@ var mob1_speed := 10000
 var mob1_attack_damage := 10.0
 var mob1_attack_speed := 1.0
 var mob1_knockback := 25
+# notes
+var note1 := false
 
 var tutorial
 var level1

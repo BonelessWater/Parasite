@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://cbwvctwna0w6a"]
+[gd_scene load_steps=4 format=3 uid="uid://ckvdaj3thlwid"]
 
 [ext_resource type="Script" path="res://scene/AbilityDrops/Drop.gd" id="1_8cb40"]
 [ext_resource type="Texture2D" uid="uid://bq16nlnhr7cu0" path="res://assets/items/shroom_02.png" id="2_x1f03"]

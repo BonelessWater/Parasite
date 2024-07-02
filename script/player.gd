@@ -54,6 +54,8 @@ func _ready():
 	Shotgun = game_node.get_node('Objects/Shotgun')
 
 func _process(_delta): # use this function to refresh values
+	
+	
 	hitbox.get_shape().set_radius(Global.player_hitbox_r)
 	hitbox.get_shape().set_height(Global.player_hitbox_h)
 	

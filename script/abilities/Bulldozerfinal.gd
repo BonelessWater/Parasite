@@ -16,7 +16,7 @@ func _process(_delta):
 	if Global.abilities['Bulldozer'] == true and Input.is_action_just_pressed("e"):
 		$Duration.one_shot = false
 		Duration.start()
-	print(Global.max_health)
+	
 func _on_duration_timeout():
 	$Cooldown.one_shot = false
 	cooldown.start()
