@@ -5,7 +5,6 @@
 [sub_resource type="LabelSettings" id="LabelSettings_2xwld"]
 
 [node name="Control" type="Control"]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = 44.0
@@ -33,7 +32,7 @@ offset_left = 143.0
 offset_top = 6.0
 offset_right = 713.0
 offset_bottom = 55.0
-text = "yo, don't want to be a hater. But i put a weapon close by somewhere. get it!"
+text = "yo, don't want to be a hater. But i put a gun in the chest. search for the key!"
 label_settings = SubResource("LabelSettings_2xwld")
 
 [node name="Panel" type="Panel" parent="VBoxContainer/Note 1/Label"]
@@ -49,4 +48,16 @@ visible = false
 layout_mode = 2
 text = "9/6/2077"
 
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = -29.0
+offset_top = 407.0
+offset_right = 16.0
+offset_bottom = 447.0
+
+[node name="Back Button" type="Button" parent="VBoxContainer2"]
+layout_mode = 2
+text = "back"
+
 [connection signal="pressed" from="VBoxContainer/Note 1" to="." method="_on_note_1_pressed"]
+[connection signal="pressed" from="VBoxContainer2/Back Button" to="." method="_on_back_button_pressed"]

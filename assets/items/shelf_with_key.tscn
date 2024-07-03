@@ -44,5 +44,9 @@ offset_bottom = -32.0
 theme_override_fonts/normal_font = ExtResource("3_nuwdu")
 text = "Found a key!"
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.5
+
 [connection signal="body_entered" from="AnimatedSprite2D/Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="AnimatedSprite2D/Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

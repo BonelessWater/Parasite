@@ -3,6 +3,9 @@
 [ext_resource type="Script" path="res://assets/inner dialouge/animated_text.gd" id="1_n3gk3"]
 [ext_resource type="FontFile" uid="uid://bjcn0ukn1nc7u" path="res://assets/Kenney Future.ttf" id="2_8x2wx"]
 
+[sub_resource type="Animation" id="Animation_ndv2w"]
+length = 0.001
+
 [sub_resource type="Animation" id="Animation_8o8iy"]
 resource_name = "check shelves"
 tracks/0/type = "value"
@@ -18,9 +21,6 @@ tracks/0/keys = {
 "values": [0.0, 1.0]
 }
 
-[sub_resource type="Animation" id="Animation_ndv2w"]
-length = 0.001
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_njfon"]
 _data = {
 "RESET": SubResource("Animation_ndv2w"),
@@ -30,7 +30,7 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_so46n"]
 size = Vector2(41, 404)
 
-[node name="animated text" type="Node2D"]
+[node name="animated text2" type="Node2D"]
 script = ExtResource("1_n3gk3")
 
 [node name="Label" type="Label" parent="."]
@@ -41,8 +41,6 @@ offset_right = 798.0
 offset_bottom = 387.0
 theme_override_fonts/font = ExtResource("2_8x2wx")
 text = "maybe I should check the cabinets or bookshelves"
-visible_characters = 0
-visible_ratio = 0.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -55,4 +53,8 @@ libraries = {
 position = Vector2(578.5, 254)
 shape = SubResource("RectangleShape2D_so46n")
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.5
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

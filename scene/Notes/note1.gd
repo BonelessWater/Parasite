@@ -1,5 +1,6 @@
 extends Control
 
+var simultaneous_scene = preload("res://scene/game.tscn")
 var x = 1
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -18,3 +19,10 @@ func _on_note_1_pressed():
 	else:
 		$"VBoxContainer/Note 1/Label".visible = false
 		$"VBoxContainer/Note 1/Label/Panel".visible = false
+
+
+func _on_back_button_pressed():
+	get_tree().root.add_child(simultaneous_scene.instantiate())
+	Global.level_status = 'Tutorial'
+	queue_free()
+

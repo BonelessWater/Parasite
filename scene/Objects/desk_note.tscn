@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bfpbuf0afnum"]
+[gd_scene load_steps=7 format=3 uid="uid://bfpbuf0afnum"]
 
 [ext_resource type="Script" path="res://desk_note.gd" id="1_lt47x"]
 [ext_resource type="Texture2D" uid="uid://b1pivas10ax32" path="res://assets/TileSet v1.0.png" id="2_pdgex"]
+[ext_resource type="FontFile" uid="uid://bjcn0ukn1nc7u" path="res://assets/Kenney Future.ttf" id="3_lxheq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_akmkc"]
 atlas = ExtResource("2_pdgex")
@@ -34,5 +35,19 @@ collision_mask = 2
 position = Vector2(-18, 14)
 shape = SubResource("RectangleShape2D_5a802")
 
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+texture_filter = 1
+offset_left = -144.0
+offset_top = -10.0
+offset_right = -32.0
+offset_bottom = 30.0
+theme_override_fonts/normal_font = ExtResource("3_lxheq")
+text = "New note!"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.5
+one_shot = true
+
 [connection signal="body_entered" from="Sprite2D/Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Sprite2D/Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

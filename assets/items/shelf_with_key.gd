@@ -12,6 +12,7 @@ func _process(delta):
 			Global.key_obtained = true
 			Global.key_amount += 1
 			$RichTextLabel.visible = true
+			$Timer.start()
 			x=1
 			
 	
@@ -24,3 +25,7 @@ func _on_area_2d_body_entered(body):
 
 func _on_area_2d_body_exited(body):
 	close = false
+
+
+func _on_timer_timeout():
+	$RichTextLabel.visible = false
