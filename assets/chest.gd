@@ -12,10 +12,12 @@ func _process(delta):
 		if Input.is_action_just_pressed("interact") and close == true and x==0:
 			$AnimatedSprite2D.play("opening")
 			Global.weapons['Pistol'] = true
+			Global.set_gun_timer = true
 			Global.key_obtained = false
 			Global.key_amount =-1
 			$AnimationTimer.start()
 			x += 1
+			print(Global.weapons['Pistol'])
 			
 
 func _on_area_2d_body_entered(body):
