@@ -1,6 +1,6 @@
 extends Node2D
 var notes = preload("res://scene/Notes/note1.tscn").instantiate()
-var note
+var note = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

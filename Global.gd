@@ -98,7 +98,11 @@ var totem := false
 
 # Splashpot
 var splashpot_health := 10
+# items
 
+#keys
+var key_obtained := false
+var key_amount := 0
 # MOBS
 
 # mob1; we can rename the mob and the variables after we have better designs

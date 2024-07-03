@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=3 uid="uid://cd1itu1dfppeb"]
+
+[ext_resource type="Script" path="res://assets/items/shelf_with_key.gd" id="1_fwa3m"]
+[ext_resource type="Texture2D" uid="uid://b1pivas10ax32" path="res://assets/TileSet v1.0.png" id="1_r2qfn"]
+[ext_resource type="FontFile" uid="uid://bjcn0ukn1nc7u" path="res://assets/Kenney Future.ttf" id="3_nuwdu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3fiku"]
+atlas = ExtResource("1_r2qfn")
+region = Rect2(256, 96, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_awo4m"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3fiku")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8vmv4"]
+size = Vector2(35, 79)
+
+[node name="shelf with key" type="Node2D"]
+script = ExtResource("1_fwa3m")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_awo4m")
+
+[node name="Area2D" type="Area2D" parent="AnimatedSprite2D"]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/Area2D"]
+position = Vector2(-0.5, 25.5)
+shape = SubResource("RectangleShape2D_8vmv4")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+visible = false
+offset_left = -54.0
+offset_top = -72.0
+offset_right = 88.0
+offset_bottom = -32.0
+theme_override_fonts/normal_font = ExtResource("3_nuwdu")
+text = "Found a key!"
+
+[connection signal="body_entered" from="AnimatedSprite2D/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="AnimatedSprite2D/Area2D" to="." method="_on_area_2d_body_exited"]

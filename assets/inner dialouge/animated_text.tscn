@@ -1,0 +1,58 @@
+[gd_scene load_steps=7 format=3 uid="uid://cpqbgkj4ye0lo"]
+
+[ext_resource type="Script" path="res://assets/inner dialouge/animated_text.gd" id="1_n3gk3"]
+[ext_resource type="FontFile" uid="uid://bjcn0ukn1nc7u" path="res://assets/Kenney Future.ttf" id="2_8x2wx"]
+
+[sub_resource type="Animation" id="Animation_8o8iy"]
+resource_name = "check shelves"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_ndv2w"]
+length = 0.001
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_njfon"]
+_data = {
+"RESET": SubResource("Animation_ndv2w"),
+"check shelves": SubResource("Animation_8o8iy")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_so46n"]
+size = Vector2(41, 404)
+
+[node name="animated text" type="Node2D"]
+script = ExtResource("1_n3gk3")
+
+[node name="Label" type="Label" parent="."]
+texture_filter = 1
+offset_left = 411.0
+offset_top = 364.0
+offset_right = 798.0
+offset_bottom = 387.0
+theme_override_fonts/font = ExtResource("2_8x2wx")
+text = "maybe I should check the cabinets or bookshelves"
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_njfon")
+}
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(578.5, 254)
+shape = SubResource("RectangleShape2D_so46n")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
