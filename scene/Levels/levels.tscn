@@ -57,3 +57,4 @@ text = "Level 3
 "
 
 [connection signal="pressed" from="TextureRect/VBoxContainer/Tutorial" to="." method="_on_tutorial_pressed"]
+[connection signal="pressed" from="TextureRect/VBoxContainer/Level 1" to="." method="_on_level_1_pressed"]

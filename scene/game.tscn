@@ -1,8 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://y5m717rfnc30"]
+[gd_scene load_steps=14 format=3 uid="uid://y5m717rfnc30"]
 
 [ext_resource type="Script" path="res://script/game.gd" id="1_gdixo"]
 [ext_resource type="PackedScene" uid="uid://dfr36sejdm04d" path="res://scene/Levels/tutorial.tscn" id="2_x3ken"]
+[ext_resource type="PackedScene" uid="uid://dh3rfd1nxkdtt" path="res://scene/Levels/level_1.tscn" id="3_4mcmg"]
 [ext_resource type="Script" path="res://script/weapons/Pistol.gd" id="4_8cd2e"]
+[ext_resource type="Script" path="res://scene/Levels/level_1.gd" id="4_lc1c1"]
 [ext_resource type="Script" path="res://script/abilities/Dash.gd" id="5_3gdox"]
 [ext_resource type="Script" path="res://script/abilities/Ram.gd" id="5_b1spt"]
 [ext_resource type="Script" path="res://script/abilities/AOE.gd" id="6_p5mte"]
@@ -67,7 +69,8 @@ script = ExtResource("1_gdixo")
 [node name="Tutorial" parent="." instance=ExtResource("2_x3ken")]
 position = Vector2(5, 6)
 
-[node name="Level1" type="Node2D" parent="."]
+[node name="Level1" parent="." instance=ExtResource("3_4mcmg")]
+script = ExtResource("4_lc1c1")
 
 [node name="Level2" type="Node2D" parent="."]
 

@@ -13,7 +13,6 @@ func _ready():
 	level2 = get_node('Level2')
 	level3 = get_node('Level3')
 	
-	
 	menu_ui()
 
 func menu_ui():
@@ -22,10 +21,14 @@ func menu_ui():
 	level_status = 'Tutorial'
 	
 func _process(_delta):
-
 	if change_level:
 		if level_status == 'Tutorial':
 			tutorial.startup()
-			
+			queue_free()
 			change_level = false
-		# add if statements for other levels
+		elif level_status == 'Level1':
+			level1.startup()
+			change_level = false
+	
+	
+		
