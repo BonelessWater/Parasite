@@ -41,7 +41,7 @@ var abilities := {'Dash': false, 'AOE': false, 'Bubble': false, 'Ram': false, 'B
 # dash
 var is_dashing := false
 var max_dash_speed := 40.0
-var dash_length := 0.075
+var dash_length := 0.035
 var dash_cooldown := 1
 var dash_speed := 1
 
@@ -111,6 +111,9 @@ var mob1_speed := 10000
 var mob1_attack_damage := 10.0
 var mob1_attack_speed := 1.0
 var mob1_knockback := 25
+var drop_mob = false
+var drop_loot = false
+
 # notes
 var note1 := false
 

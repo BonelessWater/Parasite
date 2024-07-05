@@ -80,8 +80,8 @@ animations = [{
 "speed": 7.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_vkbnp"]
-radius = 523.061
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fphwr"]
+size = Vector2(703, 74)
 
 [node name="Mob" type="CharacterBody2D"]
 script = ExtResource("1_t1lth")
@@ -98,7 +98,8 @@ sprite_frames = SubResource("SpriteFrames_p84v7")
 [node name="ViewRange" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ViewRange"]
-shape = SubResource("CircleShape2D_vkbnp")
+position = Vector2(341.5, -2)
+shape = SubResource("RectangleShape2D_fphwr")
 
 [node name="HealthComponent" parent="." instance=ExtResource("3_p5521")]
 

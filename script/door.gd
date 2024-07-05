@@ -15,10 +15,8 @@ func _ready():
 
 func _on_area_2d_body_entered(body):
 	if body.has_method("player"):
-		if Global.key_obtained and !open and Global.key_amount > 0: 
-			#body.keyObtained = false
-			$AnimatedSprite2D.play("opening")
-			open = true
+		$AnimatedSprite2D.play("opening")
+		open = true
 		if open:
 			body.position += tp
 			

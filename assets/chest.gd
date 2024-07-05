@@ -14,13 +14,14 @@ func _process(delta):
 			Global.weapons['Pistol'] = true
 			Global.set_gun_timer = true
 			Global.key_obtained = false
-			Global.key_amount =-1
+			Global.key_amount -= 1
 			$AnimationTimer.start()
 			x += 1
 			$RichTextLabel.visible = true
 			$Timer.start()
 			
-
+			
+	
 func _on_area_2d_body_entered(body):
 	close = true
 

@@ -10,7 +10,7 @@ var taking_damage := false
 var follow
 var wanted_velocity
 var velocity_delta
-	
+var loot_drop = preload("res://scene/AbilityDrops/Dash.tscn")
 
 func _ready():
 	health = Global.mob1_max_health
@@ -33,7 +33,18 @@ func _physics_process(delta):
 			$AnimatedSprite2D.flip_h = false
 
 		move_and_slide()
-
+		
+	if Global.mob1_max_health <= 0:
+		Global.drop_loot = true
+		
+	if Global.drop_loot: 
+		loot()
+		
+func loot():
+	var drop = loot_drop.instantiate()
+	drop.global_position = global_position
+	get_tree().get_root().add_child(drop)
+	
 func _on_view_range_body_entered(body):
 	# Only the player has a method called player
 	if body.has_method('player'):

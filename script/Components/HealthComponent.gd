@@ -33,15 +33,17 @@ func damage(attack_damage, knockback=0, knockback_dir=Vector2(0,0)):
 		elif Global.max_health <= 0: # this is only for the player
 			get_parent().ani.play('death')
 			
-		if health <= 0:
+		if Global.max_health <=0:
 			get_parent().queue_free()
 	else: # only for enemies
-		health -= attack_damage
+		Global.mob1_max_health -= attack_damage
 		get_node('HealthBar').scale.x -= attack_damage/max_health
 		get_parent().velocity += knockback * knockback_dir
 		
-		if health <= 0:
+		if Global.mob1_max_health <= 0:
 			get_parent().queue_free()
+			if Global.drop_mob:
+				Global.drop_loot = true
 		
 func _process(_delta):
 	pass
