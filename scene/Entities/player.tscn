@@ -6,11 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://521wgt360aga" path="res://scene/Components/HitboxComponent.tscn" id="4_wkg31"]
 [ext_resource type="PackedScene" uid="uid://dnoykymj28448" path="res://scene/Abilities/BubbleSprite.tscn" id="5_u8rmv"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rypiv"]
-resource_local_to_scene = true
-radius = 19.0
-height = 52.0
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_gxrxn"]
 atlas = ExtResource("2_sn8p2")
 region = Rect2(0, 96, 48, 48)
@@ -327,9 +322,13 @@ animations = [{
 "speed": 9.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rypiv"]
+resource_local_to_scene = true
+radius = 11.0
+height = 36.0
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5gxj2"]
-radius = 17.3333
-height = 42.6667
+height = 38.0
 
 [sub_resource type="Gradient" id="Gradient_f2fk0"]
 offsets = PackedFloat32Array(0, 0.74026)
@@ -342,38 +341,42 @@ fill_from = Vector2(0.5, 0.5)
 
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(305, 111)
-scale = Vector2(0.75, 0.75)
 collision_layer = 3
 script = ExtResource("1_x6sp5")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
 
-[node name="Hitbox" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_rypiv")
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 process_priority = 2
 texture_filter = 1
 position = Vector2(0, -20)
-scale = Vector2(2, 2)
+scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_m5gm3")
 animation = &"forward_walk"
 autoplay = "forward"
 
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+position = Vector2(1, -10)
+shape = SubResource("CapsuleShape2D_rypiv")
+
 [node name="HealthComponent" parent="." instance=ExtResource("3_j6qv3")]
 
 [node name="HitboxComponent" parent="." instance=ExtResource("4_wkg31")]
+position = Vector2(1, -7)
 
 [node name="BubbleSprite" parent="." instance=ExtResource("5_u8rmv")]
+position = Vector2(2, -13)
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(5.33333, 0)
+position = Vector2(0.999987, -10)
 shape = SubResource("CapsuleShape2D_5gxj2")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, -10)
+scale = Vector2(0.796875, 0.765625)
 texture = SubResource("GradientTexture2D_tneek")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

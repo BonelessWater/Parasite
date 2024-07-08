@@ -4,8 +4,8 @@ var movement_speed := 30000.0
 var max_health := 50.0
 var stamina := 5
 var max_sprint := 2
-var player_radius := 19 # radius of player hitbox
-var player_height := 52
+var player_radius := 10 # radius of player hitbox
+var player_height := 30
 @onready var player_hitbox_r = player_radius
 @onready var player_hitbox_h = player_height
 var last_vel

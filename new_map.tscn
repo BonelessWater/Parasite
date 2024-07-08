@@ -3469,6 +3469,11 @@ position = Vector2(25, 49)
 color = Color(0.362587, 0.810902, 0.509857, 1)
 texture = SubResource("GradientTexture2D_53olv")
 
+[node name="PointLight2D7" type="PointLight2D" parent="Capsule Lights/PointLight2D7"]
+position = Vector2(127, 0)
+color = Color(0.362587, 0.810902, 0.509857, 1)
+texture = SubResource("GradientTexture2D_53olv")
+
 [node name="Lightbulb light" type="Node2D" parent="."]
 
 [node name="PointLight2D" type="PointLight2D" parent="Lightbulb light"]
