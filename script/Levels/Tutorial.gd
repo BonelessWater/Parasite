@@ -5,6 +5,7 @@ var player
 var player_pos 
 var process = false
 var notes = preload("res://scene/Notes/note1.tscn").instantiate()
+
 func startup():
 	process = true
 	# Makes player node in tutorial

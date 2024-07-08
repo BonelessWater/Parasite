@@ -349,7 +349,7 @@ texture_filter = 1
 position = Vector2(0, -20)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_m5gm3")
-animation = &"new_animation"
+animation = &"forward_walk"
 autoplay = "forward"
 
 [node name="HealthComponent" parent="." instance=ExtResource("3_j6qv3")]

@@ -13,5 +13,11 @@ func _process(_delta):
 
 func _on_tutorial_pressed():
 	get_tree().root.add_child(simultaneous_scene)
+	Global.level_status = 'Tutorial'
+	queue_free()
+	
+func _on_level_1_pressed():
+	get_tree().root.add_child(simultaneous_scene)
 	Global.level_status = 'Level1'
 	queue_free()
+	

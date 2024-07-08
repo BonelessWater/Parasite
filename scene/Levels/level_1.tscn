@@ -1,7 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://dh3rfd1nxkdtt"]
+[gd_scene load_steps=3 format=3 uid="uid://dh3rfd1nxkdtt"]
 
 [ext_resource type="PackedScene" uid="uid://cvat6706rinbj" path="res://new_map.tscn" id="1_3cgog"]
+[ext_resource type="Script" path="res://scene/Levels/level_1.gd" id="1_4p70y"]
 
 [node name="Level1" type="Node2D"]
+script = ExtResource("1_4p70y")
 
 [node name="TileMap" parent="." instance=ExtResource("1_3cgog")]
