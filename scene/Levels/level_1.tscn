@@ -1,9 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://dh3rfd1nxkdtt"]
+[gd_scene load_steps=4 format=3 uid="uid://dh3rfd1nxkdtt"]
 
 [ext_resource type="PackedScene" uid="uid://cvat6706rinbj" path="res://new_map.tscn" id="1_3cgog"]
 [ext_resource type="Script" path="res://scene/Levels/level_1.gd" id="1_4p70y"]
+[ext_resource type="PackedScene" uid="uid://b6swqefiqnrh8" path="res://scene/Objects/door_1.tscn" id="3_5v6n2"]
 
 [node name="Level1" type="Node2D"]
 script = ExtResource("1_4p70y")
 
 [node name="TileMap" parent="." instance=ExtResource("1_3cgog")]
+
+[node name="door1" parent="." instance=ExtResource("3_5v6n2")]
+position = Vector2(278, 284)

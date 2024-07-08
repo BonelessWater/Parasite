@@ -13,7 +13,7 @@ func startup():
 	add_child(player)
 	player = $Player
 	
-	player_pos = Vector2(250, 150)
+	player_pos = Vector2(150, 100)
 	player.set_position(player_pos)
 	
 	# Add mobs and other items here
