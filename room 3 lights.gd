@@ -12,4 +12,4 @@ func _process(delta):
 
 
 func _on_area_2d_body_entered(body):
-	$"TileMap/light1(room2)".visible = false
+	$PointLight2D2.visible = false
