@@ -3094,39 +3094,32 @@ scale = Vector2(3.08411, 2.03125)
 
 [node name="PointLight2D10" type="PointLight2D" parent="lava ligths"]
 position = Vector2(-2.91819, 0)
-scale = Vector2(1, 1)
 color = Color(0.363592, 0.530417, 0.936455, 1)
 texture = SubResource("GradientTexture2D_53olv")
 
 [node name="PointLight2D10" type="PointLight2D" parent="lava ligths/PointLight2D10"]
 position = Vector2(0.324243, -35.9385)
-scale = Vector2(1, 1)
 color = Color(0.353844, 0.493611, 0.894511, 1)
 texture = SubResource("GradientTexture2D_53olv")
 
 [node name="PointLight2D10" type="PointLight2D" parent="lava ligths/PointLight2D10/PointLight2D10"]
 position = Vector2(35.991, 3.44616)
-scale = Vector2(1, 1)
 color = Color(0.261939, 0.315647, 0.890479, 1)
 texture = SubResource("GradientTexture2D_53olv")
 
 [node name="PointLight2D10" type="PointLight2D" parent="lava ligths/PointLight2D10/PointLight2D10/PointLight2D10"]
 position = Vector2(-1.62122, 24.1231)
-scale = Vector2(1, 1)
 color = Color(0.313564, 0.471984, 0.87175, 1)
 texture = SubResource("GradientTexture2D_53olv")
 
 [node name="Map borders" type="Node2D" parent="."]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Map borders"]
-scale = Vector2(1, 1)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Map borders/StaticBody2D"]
-scale = Vector2(1, 1)
 polygon = PackedVector2Array(374, 342, 381, 350, 382, 396, 158, 398, 1, 397, 1, 1, 273, 1, 287, 1, 286, 270, 274, 271, 273, 45, 19, 44, 14, 44, 15, 131, 13, 231, 15, 337, 274, 337, 273, 321, 286, 321, 287, 337, 375, 338)
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Map borders/StaticBody2D"]
-scale = Vector2(1, 1)
 polygon = PackedVector2Array(466, 340, 466, 340, 467, 399, 527, 399, 526, 17, 385, 17, 385, 61, 512, 63, 513, 336)
 
 [node name="room 3 lights" type="Node2D" parent="."]
@@ -3136,7 +3129,6 @@ script = ExtResource("5_62wnc")
 
 [node name="PointLight2D2" type="PointLight2D" parent="room 3 lights"]
 position = Vector2(6.10352e-05, 0)
-scale = Vector2(1, 1)
 energy = 9.79
 blend_mode = 1
 texture = SubResource("GradientTexture2D_d71lg")
@@ -3163,7 +3155,6 @@ texture_scale = 7.9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="room 3 lights/Area2D"]
 position = Vector2(35.1145, -101.384)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_lqylm")
 
 [connection signal="body_entered" from="TileMap/Area2D" to="." method="_on_area_2d_body_entered"]
